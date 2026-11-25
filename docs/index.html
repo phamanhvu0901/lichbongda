@@ -1,1 +1,451 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lịch thi đấu bóng đá – Giờ Việt Nam</title>
+<style>
+:root{
+  --bg:#f4f6f5;--card:#fff;--ink:#14201a;--mute:#62736a;--line:#e1e7e3;
+  --accent:#0e9f5b;--accent-ink:#fff;--accent-soft:#e3f5ec;--live:#e5484d;--shadow:0 1px 2px rgba(0,0,0,.05),0 4px 16px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0e1511;--card:#17211b;--ink:#eaf2ed;--mute:#9bb0a3;--line:#26352c;--accent:#2ec27e;--accent-ink:#06150d;--accent-soft:#17352a;--shadow:none}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button{font:inherit;color:inherit;cursor:pointer}
+header{background:linear-gradient(135deg,#0a6b3d,#0e9f5b);color:#fff;padding:18px 16px 20px}
+.wrap{max-width:1100px;margin:0 auto}
+.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+h1{margin:0;font-size:22px;letter-spacing:-.01em}
+.clock{text-align:right;font-variant-numeric:tabular-nums}
+.clock b{display:block;font-size:22px;line-height:1.1}
+.clock span{font-size:13px;opacity:.9}
+main{max-width:1100px;margin:0 auto;padding:16px;display:grid;grid-template-columns:290px 1fr;gap:18px}
+@media (max-width:820px){main{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:14px}
+.panel h2{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+aside .panel+.panel{margin-top:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:6px 12px;font-size:14px}
+.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.row-actions{display:flex;gap:10px;margin-top:8px;font-size:13px}
+.link{background:none;border:0;color:var(--accent);padding:0;text-decoration:underline}
+input[type=search]{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;margin-bottom:8px}
+.clubs{max-height:340px;overflow:auto;margin:0 -6px;padding:0 6px}
+.clubs h3{font-size:12px;color:var(--mute);margin:10px 0 4px;font-weight:600}
+.club{display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:none;border:0;padding:6px 4px;border-radius:8px}
+.club:hover{background:var(--accent-soft)}
+.club .star{margin-left:auto;font-size:18px;color:var(--mute)}
+.club[aria-pressed=true] .star{color:#f5a524}
+.club[aria-pressed=true]{font-weight:600}
+.crest{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;color:#fff}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+.seg button{border:0;background:none;padding:8px 14px}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);font-weight:600}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.next-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:18px}
+.next{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:12px 14px;box-shadow:var(--shadow)}
+.next .who{font-weight:700;display:flex;align-items:center;gap:8px}
+.next .vs{margin:6px 0 2px;font-size:16px;font-weight:600}
+.next .when{color:var(--mute);font-size:14px}
+.next .cd{margin-top:8px;display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:700;border-radius:999px;padding:3px 10px;font-size:13px}
+.day{margin:18px 0 6px;font-weight:700;font-size:14px;color:var(--mute);text-transform:capitalize}
+.match{display:grid;grid-template-columns:70px 1fr 74px 1fr;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.match .t{font-weight:700;font-variant-numeric:tabular-nums}
+.match .t small{display:block;font-weight:400;color:var(--mute);font-size:11px}
+.team{display:flex;align-items:center;gap:8px;min-width:0}
+.team span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.team.a{justify-content:flex-start}
+.team.h{justify-content:flex-end;text-align:right;flex-direction:row-reverse}
+.score{text-align:center;font-weight:800;font-size:18px;font-variant-numeric:tabular-nums}
+.score.vs{font-weight:500;font-size:13px;color:var(--mute)}
+.lg{grid-column:1/-1;font-size:12px;color:var(--mute);margin-top:-2px}
+.fav-row{box-shadow:inset 3px 0 0 #f5a524}
+.live{color:var(--live);font-size:12px;font-weight:700}
+.match{cursor:pointer;transition:border-color .15s,transform .15s}
+.match:hover,.match:focus-visible{border-color:var(--accent);outline:none;transform:translateY(-1px)}
+.match .hint{grid-column:1/-1;display:flex;justify-content:space-between;font-size:12px;color:var(--mute);margin-top:-2px}
+.match .hint b{color:var(--accent);font-weight:600}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:flex-start;justify-content:center;padding:16px;overflow:auto;z-index:50}
+.ov.on{display:flex}
+.modal{background:var(--card);color:var(--ink);border-radius:16px;max-width:720px;width:100%;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden}
+.mh{background:linear-gradient(135deg,#0a6b3d,#0e9f5b);color:#fff;padding:16px 18px;position:relative}
+.mh .x{position:absolute;right:10px;top:10px;background:rgba(255,255,255,.2);border:0;color:#fff;width:32px;height:32px;border-radius:50%;font-size:18px}
+.mh .lgn{font-size:12px;opacity:.9;margin-bottom:6px}
+.mh .teams{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;text-align:center}
+.mh .teams b{font-size:17px}
+.mh .big{font-size:26px;font-weight:800;font-variant-numeric:tabular-nums}
+.mh .sub{margin-top:6px;text-align:center;font-size:13px;opacity:.95}
+.mb{padding:14px 18px 18px}
+.mb h4{margin:16px 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.mb h4:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cols .ct{font-weight:700;margin-bottom:6px;font-size:14px}
+.pl{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--line);font-size:14px}
+.pl i{font-style:normal;flex:none;width:28px;text-align:center;font-size:10px;font-weight:700;border-radius:6px;padding:2px 0;background:var(--accent-soft);color:var(--accent)}
+.pl.sub{color:var(--mute)}
+.st{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;font-size:13px;margin:7px 0;text-align:center}
+.st .l{text-align:left;font-weight:700;font-variant-numeric:tabular-nums}
+.st .r{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.st .n{color:var(--mute)}
+.pend{background:var(--accent-soft);border-radius:12px;padding:14px;font-size:14px}
+@media (max-width:560px){.cols{grid-template-columns:1fr}}
+.empty{padding:28px;text-align:center;color:var(--mute);background:var(--card);border:1px dashed var(--line);border-radius:14px}
+.note{font-size:12px;color:var(--mute);margin:20px 0 4px}
+@media (max-width:520px){
+  .match{grid-template-columns:56px 1fr 56px 1fr;padding:8px}
+  .team{flex-direction:column;align-items:center;text-align:center;gap:2px;font-size:13px}
+  .team.h{flex-direction:column}
+  .team span:last-child{white-space:normal}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap top">
+    <div>
+      <h1>⚽ Lịch thi đấu bóng đá</h1>
+      <div style="opacity:.9;font-size:14px">Toàn bộ giờ hiển thị theo múi giờ Việt Nam (GMT+7)</div>
+    </div>
+    <div class="clock"><b id="clockTime">--:--:--</b><span id="clockDate"></span></div>
+  </div>
+</header>
+
+<main>
+  <aside>
+    <div class="panel">
+      <h2>Tìm câu lạc bộ</h2>
+      <input type="search" id="clubSearch" placeholder="Nhập tên CLB, ví dụ: Arsenal…" aria-label="Tìm câu lạc bộ" autocomplete="off">
+      <div class="clubs" id="clubList"></div>
+    </div>
+    <div class="panel">
+      <h2>CLB bạn theo dõi</h2>
+      <div id="favList"></div>
+      <div class="row-actions" id="clearRow"><button class="link" id="clearFav">Xóa tất cả</button></div>
+    </div>
+  </aside>
+
+  <section>
+    <div id="nextWrap"></div>
+    <div class="bar">
+      <div class="seg" role="group" aria-label="Loại trận">
+        <button data-tab="up" aria-pressed="true">Sắp diễn ra</button>
+        <button data-tab="res" aria-pressed="false">Kết quả</button>
+      </div>
+    </div>
+    <div id="list"></div>
+    <p class="note" id="stamp"></p>
+  </section>
+</main>
+
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="Chi tiết trận đấu"><div class="modal" id="modal"></div></div>
+
+<script>
+const TZ='Asia/Ho_Chi_Minh';
+const UPDATED='25/11/2026';
+const LG={VL:'V.League 1',EPL:'Ngoại hạng Anh',LL:'La Liga',SA:'Serie A',BL:'Bundesliga',L1:'Ligue 1',UCL:'Champions League'};
+// Dạng: giải|chủ nhà|khách|giờ UTC|bàn chủ|bàn khách (để trống nếu chưa đá)
+const RAW=`
+EPL|Man City|Fulham|2026-11-21T12:30|1|1
+EPL|Aston Villa|Sunderland|2026-11-21T15:00|0|0
+EPL|Bournemouth|Nottm Forest|2026-11-21T15:00|2|0
+EPL|Chelsea|Leeds|2026-11-21T15:00|1|4
+EPL|Coventry|Crystal Palace|2026-11-21T15:00|3|2
+EPL|Tottenham|Ipswich|2026-11-21T15:00|2|0
+EPL|Newcastle|Arsenal|2026-11-21T17:30|2|2
+EPL|Hull City|Brighton|2026-11-22T14:00|2|0
+EPL|Liverpool|Man United|2026-11-22T16:30|4|0
+EPL|Brentford|Everton|2026-11-23T20:00|4|0
+EPL|Nottm Forest|Chelsea|2026-11-27T20:00||
+EPL|Leeds|Coventry|2026-11-28T15:00||
+EPL|Man United|Brentford|2026-11-28T15:00||
+EPL|Ipswich|Aston Villa|2026-11-28T17:30||
+EPL|Everton|Liverpool|2026-11-29T12:00||
+EPL|Brighton|Newcastle|2026-11-29T14:05||
+EPL|Crystal Palace|Hull City|2026-11-29T14:05||
+EPL|Fulham|Bournemouth|2026-11-29T14:05||
+EPL|Sunderland|Tottenham|2026-11-29T14:05||
+EPL|Arsenal|Man City|2026-11-29T16:30||
+LL|Athletic Bilbao|Espanyol|2026-11-20T20:00|0|1
+LL|Alavés|Deportivo La Coruña|2026-11-21T13:00|3|1
+LL|Rayo Vallecano|Valencia|2026-11-21T15:15|0|1
+LL|Sevilla|Real Betis|2026-11-21T17:30|1|1
+LL|Real Madrid|Celta Vigo|2026-11-21T20:00|2|1
+LL|Barcelona|Villarreal|2026-11-22T13:00|3|2
+LL|Racing Santander|Real Sociedad|2026-11-22T15:15|3|2
+LL|Osasuna|Málaga|2026-11-22T17:30|1|0
+LL|Getafe|Atlético Madrid|2026-11-22T20:00|0|3
+LL|Levante|Elche|2026-11-23T20:00|1|1
+LL|Levante|Racing Santander|2026-11-27T20:00||
+LL|Real Betis|Rayo Vallecano|2026-11-28T13:00||
+LL|Málaga|Athletic Bilbao|2026-11-28T15:15||
+LL|Elche|Atlético Madrid|2026-11-28T17:30||
+LL|Real Madrid|Alavés|2026-11-28T20:00||
+LL|Valencia|Osasuna|2026-11-29T13:00||
+LL|Deportivo La Coruña|Barcelona|2026-11-29T15:15||
+LL|Celta Vigo|Villarreal|2026-11-29T17:30||
+LL|Real Sociedad|Sevilla|2026-11-29T20:00||
+LL|Espanyol|Getafe|2026-11-30T20:00||
+SA|Como|Cagliari|2026-11-21T14:00|2|0
+SA|Lazio|Lecce|2026-11-21T14:00|3|0
+SA|Parma|Roma|2026-11-21T17:00|1|5
+SA|Napoli|Torino|2026-11-21T19:45|1|0
+SA|Juventus|Venezia|2026-11-22T11:30|4|0
+SA|Bologna|Udinese|2026-11-22T14:00|1|1
+SA|Sassuolo|Genoa|2026-11-22T14:00|0|2
+SA|AC Milan|Frosinone|2026-11-22T17:00|5|1
+SA|Atalanta|Inter|2026-11-22T19:45|4|4
+SA|Monza|Fiorentina|2026-11-23T19:45|3|0
+SA|Venezia|Bologna|2026-11-27T19:45||
+SA|Frosinone|Parma|2026-11-28T14:00||
+SA|Torino|Lazio|2026-11-28T17:00||
+SA|Inter|Genoa|2026-11-28T19:45||
+SA|Udinese|Fiorentina|2026-11-29T11:30||
+SA|Sassuolo|Napoli|2026-11-29T14:00||
+SA|Roma|Monza|2026-11-29T17:00||
+SA|Como|Juventus|2026-11-29T19:45||
+SA|Lecce|Atalanta|2026-11-30T17:30||
+SA|Cagliari|AC Milan|2026-11-30T19:45||
+BL|Bayern Munich|1. FC Köln|2026-11-20T19:30|1|1
+BL|Leverkusen|Paderborn|2026-11-21T14:30|4|0
+BL|Eintracht Frankfurt|Hoffenheim|2026-11-21T14:30|1|0
+BL|Union Berlin|RB Leipzig|2026-11-21T14:30|1|5
+BL|Gladbach|Dortmund|2026-11-21T14:30|0|1
+BL|Elversberg|Freiburg|2026-11-21T14:30|0|1
+BL|Schalke 04|Stuttgart|2026-11-21T17:30|0|0
+BL|Augsburg|Mainz|2026-11-22T14:30|3|1
+BL|Werder Bremen|Hamburger SV|2026-11-22T16:30|4|0
+BL|Werder Bremen|Gladbach|2026-11-27T19:30||
+BL|Mainz|Union Berlin|2026-11-28T14:30||
+BL|Hamburger SV|Bayern Munich|2026-11-28T14:30||
+BL|1. FC Köln|Elversberg|2026-11-28T14:30||
+BL|Paderborn|Schalke 04|2026-11-28T14:30||
+BL|Stuttgart|Eintracht Frankfurt|2026-11-28T17:30||
+BL|Freiburg|RB Leipzig|2026-11-29T14:30||
+BL|Hoffenheim|Augsburg|2026-11-29T16:30||
+BL|Dortmund|Leverkusen|2026-11-29T18:30||
+BL|Bayern Munich|Paderborn|2026-12-04T19:30||
+L1|Troyes|Le Havre|2026-11-20T19:45|3|1
+L1|Nice|PSG|2026-11-21T16:15|2|3
+L1|Lens|Toulouse|2026-11-21T19:45|1|1
+L1|Lille|Lyon|2026-11-21T19:45|0|1
+L1|Monaco|Auxerre|2026-11-21T19:45|1|1
+L1|Strasbourg|Brest|2026-11-21T19:45|0|1
+L1|Paris FC|Angers|2026-11-22T14:00|4|0
+L1|Lorient|Rennes|2026-11-22T16:15|1|1
+L1|Marseille|Le Mans|2026-11-22T19:45|2|3
+L1|Brest|Paris FC|2026-11-27T19:45||
+L1|Angers|Lens|2026-11-28T16:15||
+L1|Le Havre|Strasbourg|2026-11-28T19:45||
+L1|Le Mans|Lille|2026-11-28T19:45||
+L1|Nice|Troyes|2026-11-28T19:45||
+L1|PSG|Lorient|2026-11-28T19:45||
+L1|Auxerre|Marseille|2026-11-29T14:00||
+L1|Toulouse|Rennes|2026-11-29T16:15||
+L1|Lyon|Monaco|2026-11-29T19:45||
+L1|Toulouse|PSG|2026-12-04T19:45||
+UCL|Bodø/Glimt|LASK Linz|2026-11-24T17:45|1|0
+UCL|Galatasaray|Aston Villa|2026-11-24T17:45|1|0
+UCL|Arsenal|Dortmund|2026-11-24T20:00|1|1
+UCL|Como|AEK Athens|2026-11-24T20:00|1|0
+UCL|Feyenoord|Porto|2026-11-24T20:00|0|1
+UCL|Man City|Napoli|2026-11-24T20:00|2|2
+UCL|RB Leipzig|Lens|2026-11-24T20:00|3|1
+UCL|Real Madrid|PSV|2026-11-24T20:00|5|1
+UCL|Slovan Bratislava|Real Betis|2026-11-24T20:00|0|2
+UCL|Sabah|Barcelona|2026-11-25T17:45||
+UCL|Slavia Prague|Villarreal|2026-11-25T17:45||
+UCL|Atlético Madrid|Viking|2026-11-25T20:00||
+UCL|Club Brugge|Liverpool|2026-11-25T20:00||
+UCL|Inter|Stuttgart|2026-11-25T20:00||
+UCL|Shakhtar Donetsk|Fenerbahçe|2026-11-25T20:00||
+UCL|Lille|Bayern Munich|2026-11-25T20:00||
+UCL|PSG|Roma|2026-11-25T20:00||
+UCL|Sporting CP|Man United|2026-11-25T20:00||
+UCL|Viking|Feyenoord|2026-12-08T17:45||
+VL|Thể Công Viettel|Sông Lam Nghệ An|2026-11-20T12:15|0|0
+VL|Thanh Hóa|HAGL|2026-11-20T10:00|2|1
+VL|Đồng Nai|Hà Nội|2026-11-21T11:00|1|3
+VL|Thép Xanh Nam Định|Hải Phòng|2026-11-21T11:00|2|1
+VL|SHB Đà Nẵng|Ninh Bình|2026-11-22T11:00|0|1
+VL|Hồng Lĩnh Hà Tĩnh|CA TP.HCM|2026-11-22T11:00|2|1
+VL|Thép Xanh Nam Định|Công an Hà Nội|2026-11-27T11:00||
+VL|Sông Lam Nghệ An|Ninh Bình|2026-11-27T11:00||
+VL|Bắc Ninh|SHB Đà Nẵng|2026-11-28T11:00||
+VL|CA TP.HCM|HAGL|2026-11-28T11:00||
+VL|Hà Nội|Hồng Lĩnh Hà Tĩnh|2026-11-28T12:15||
+VL|Thanh Hóa|Đồng Nai|2026-11-29T10:00||
+VL|Hải Phòng|Thể Công Viettel|2026-11-29T11:00||
+VL|CA TP.HCM|Thép Xanh Nam Định|2026-12-04T11:00||
+VL|HAGL|Đồng Nai|2026-12-05T10:00||
+VL|Bắc Ninh|Hồng Lĩnh Hà Tĩnh|2026-12-05T11:00||
+VL|Ninh Bình|Công an Hà Nội|2026-12-06T11:00||
+VL|Sông Lam Nghệ An|Thanh Hóa|2026-12-06T11:00||
+VL|Hà Nội|Hải Phòng|2026-12-06T12:15||
+VL|SHB Đà Nẵng|Thể Công Viettel|2026-12-07T11:00||
+`;
+// Chuẩn hóa tên CLB giữa các giải để một CLB chỉ có một tên
+const ALIAS={'Leverkusen':'Bayer Leverkusen','Dortmund':'Borussia Dortmund','Stuttgart':'VfB Stuttgart','Gladbach':'M\'gladbach','Roma':'AS Roma','Inter':'Inter Milan','Lens':'RC Lens','Lyon':'Olympique Lyon','Marseille':'Olympique Marseille','Monaco':'AS Monaco','Lille':'Lille OSC','Porto':'FC Porto','Barcelona':'FC Barcelona','PSG':'Paris Saint-Germain'};
+const nm=s=>ALIAS[s]||s;
+// Đội hình đã có dữ liệu: 11 cầu thủ đầu là đá chính, phần còn lại là dự bị. Khóa = "chủ nhà|khách"
+// Thống kê: [kiểm soát bóng %, sút, sút trúng đích, phạt góc, phạm lỗi, thẻ vàng]
+const LINEUPS={
+'Real Madrid|PSV':{h:["Courtois, Thibaut (goalkeeper)","Valverde, Federico (midfielder)","Militao, Eder (defender)","Rudiger, Antonio (defender)","Cucurella, Marc (defender)","Silva, Bernardo (midfielder)","Tchouameni, Aurelien (midfielder)","Guler, Arda (forward)","Diomande, Yan (forward)","Mbappe, Kylian (forward)","Vinicius Junior (forward)","Mestre, Sergio (goalkeeper)","Espi, Carlos (forward)","Pitarch Pinar, Thiago (midfielder)","Huijsen, Dean (defender)"],a:["Kovar, Matej (goalkeeper)","Dest, Sergino (defender)","Geertruida, Lutsharel (defender)","Obispo, Armando (defender)","Kostic, Filip (forward)","Wanner, Paul (midfielder)","Mijnans, Sven (midfielder)","Sano, Kodai (midfielder)","Perisic, Ivan (forward)","Til, Guus (midfielder)","van Bommel, Ruben (forward)","Fernandez, Noah (midfielder)","Bajraktarevic, Esmir (forward)","Smolenaars, Tijn (goalkeeper)","Santos, Ayoni (midfielder)"],sh:[59,23,9,4,5,3],sa:[41,9,1,1,11,1]},
+'Arsenal|Borussia Dortmund':{h:["Arrizabalaga, Kepa (goalkeeper)","White, Ben (defender)","Konsa, Ezri (defender)","Magalhaes, Gabriel (defender)","Hincapie, Piero (defender)","Lewis-Skelly, Myles (midfielder)","Rice, Declan (midfielder)","Madueke, Noni (forward)","Odegaard, Martin (midfielder)","Tzolis, Christos (forward)","Gyokeres, Viktor (forward)","Dowman, Max (forward)","Porter, Jack (goalkeeper)","Mosquera, Cristhian (defender)","Saliba, William (defender)"],a:["Kobel, Gregor (goalkeeper)","Gadou, Kouakou Joane (defender)","Anton, Waldemar (defender)","Schlotterbeck, Nico (defender)","Veerman, Joey (midfielder)","Ryerson, Julian (forward)","Bellingham, Jobe (midfielder)","Nmecha, Felix (midfielder)","Svensson, Daniel (defender)","Beier, Maximilian (forward)","Silva, Fabio (forward)","Karetsas, Konstantinos (midfielder)","Albert, Mathis (forward)","Reggiani, Luca (defender)","dos Santos, Enzo (midfielder)"],sh:[59,26,4,8,7,0],sa:[41,9,4,5,13,0]},
+'Man City|Napoli':{h:["Donnarumma, Gianluigi (goalkeeper)","Nunes, Matheus (midfielder)","Guehi, Marc (defender)","Gvardiol, Josko (defender)","O'Reilly, Nico (defender)","Anderson, Elliot (midfielder)","Bouaddi, Ayyoub (midfielder)","Allan (forward)","Fernandez, Enzo (midfielder)","Cherki, Rayan (midfielder)","Haaland, Erling (forward)","Reis, Vitor (defender)","McAidoo, Ryan (midfielder)","Samba, Floyd (midfielder)","Khusanov, Abdukodir (defender)"],a:["Milinkovic-Savic, Vanja (goalkeeper)","Beukema, Sam (defender)","Rrahmani, Amir (defender)","Olivera, Mathias (defender)","Politano, Matteo (forward)","Gilmour, Billy (midfielder)","De Bruyne, Kevin (midfielder)","Mctominay, Scott (midfielder)","Spinazzola, Leonardo (defender)","Lang, Noa (forward)","Hojlund, Rasmus (forward)","Antonio Spinelli, David (goalkeeper)","Chiummariello, Andrea ()","Giovane (forward)","Lucca, Lorenzo (forward)"],sh:[64,16,8,9,9,1],sa:[36,7,3,3,9,0]},
+'Slovan Bratislava|Real Betis':{h:["Takac, Dominik (goalkeeper)","Blackman, Cesar (defender)","Bajric, Kenan (defender)","Markovic, Svetozar (defender)","Cruz, Sandro (defender)","Matsuoka, Daiki (midfielder)","Pokorny, Peter (midfielder)","Ibrahim, Rahim (midfielder)","Barseghyan, Tigran (midfielder)","Sporar, Andraz (forward)","Marcelli, Nino (forward)","Marko, Maximilian (midfielder)","Camara, Sahmkou (defender)","Maros, Alexej (midfielder)","Gramblicka, Daniel (goalkeeper)"],a:["Valles, Alvaro (goalkeeper)","Ortiz, Angel (midfielder)","Llorente, Diego (defender)","Gomez, Diego (defender)","Garcia, Francisco (defender)","Isco (midfielder)","Bernal, Facundo (midfielder)","Deossa, Nelson (midfielder)","Antony (forward)","Hernandez, Cucho (forward)","Ezzalzouli, Abde (forward)","Gonzalez Pallares, Manuel (goalkeeper)","Natan (defender)","Parrott, Troy (forward)","Firpo, Junior (defender)"],sh:[36,9,3,1,12,1],sa:[64,18,6,4,6,1]},
+'Galatasaray|Aston Villa':{h:["Cakir, Ugurcan (goalkeeper)","Singo, Wilfried (defender)","Sanchez, Davinson (defender)","Bardakci, Abdulkerim (defender)","Jakobs, Ismail (defender)","Lemina, Mario (midfielder)","Torreira, Lucas (midfielder)","Akgun, Yunus (forward)","Batrakov, Aleksey (midfielder)","Elmali, Eren (defender)","Yilmaz, Baris Alper (forward)","Nhaga, Renato (midfielder)","Lus, Berat (forward)","Gundogan, Ilkay (midfielder)","Gul, Deniz (forward)"],a:["Suzuki, Zion (goalkeeper)","Harwood-Bellis, Taylor (defender)","Lindelof, Victor (defender)","Mings, Tyrone (defender)","Maatsen, Ian (defender)","Gomes, Joao (midfielder)","Kamara, Boubacar (midfielder)","Alysson (forward)","McGinn, John (midfielder)","Manzambi, Johan (midfielder)","Jackson, Nicolas (forward)","Mbaye, Ibrahim (forward)","Wright, James (goalkeeper)","Hemmings, George (forward)","Bogarde, Lamare (midfielder)"],sh:[46,9,2,5,13,2],sa:[54,3,0,1,12,4]}
+};
+const M=RAW.trim().split('\n').map((l,i)=>{const [lg,h,a,iso,hs,as]=l.split('|');return{i,lg,h:nm(h),a:nm(a),t:Date.parse(iso+':00Z'),hs:hs===''?null:+hs,as:as===''?null:+as}});
+
+// ---- Định dạng giờ Việt Nam
+const fDate=new Intl.DateTimeFormat('vi-VN',{timeZone:TZ,weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'});
+const fTime=new Intl.DateTimeFormat('vi-VN',{timeZone:TZ,hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+const fSec=new Intl.DateTimeFormat('vi-VN',{timeZone:TZ,hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});
+const fKey=new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'});
+const MATCH_MS=115*60000;
+
+// ---- Trạng thái
+const clubs=new Map(); // tên -> Set giải
+M.forEach(m=>[m.h,m.a].forEach(c=>{if(!clubs.has(c))clubs.set(c,new Set());clubs.get(c).add(m.lg)}));
+const load=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const S={fav:new Set(load('fav',[]).filter(c=>clubs.has(c))),tab:'up',q:''};
+const persist=()=>save('fav',[...S.fav]);
+
+// ---- Tiện ích
+const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function crest(n){let h=0;for(const c of n)h=(h*31+c.charCodeAt(0))%360;const ini=n.replace(/^\d+\.\s*/,'').split(/\s+/).map(w=>w[0]).join('').slice(0,3).toUpperCase();return `<span class="crest" style="background:hsl(${h} 45% 38%)">${esc(ini)}</span>`}
+const isUpcoming=(m,now)=>m.hs===null&&m.t+MATCH_MS>now;
+function countdown(t,now){
+  const d=t-now; if(d<=0)return 'Đang diễn ra';
+  const days=Math.floor(d/864e5),h=Math.floor(d%864e5/36e5),mi=Math.floor(d%36e5/6e4);
+  if(days>0)return `Còn ${days} ngày ${h} giờ`;
+  if(h>0)return `Còn ${h} giờ ${mi} phút`;
+  return `Còn ${mi} phút`;
+}
+
+// ---- Vẽ giao diện
+const norm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d').toLowerCase();
+const clubBtn=c=>`<button class="club" data-club="${esc(c)}" aria-pressed="${S.fav.has(c)}">${crest(c)}<span>${esc(c)}</span><span class="star">${S.fav.has(c)?'★':'☆'}</span></button>`;
+function drawClubs(){
+  const q=norm(S.q.trim());
+  if(!q){clubList.innerHTML='<div style="color:var(--mute);font-size:13px">Gõ tên câu lạc bộ (V.League 1, Ngoại hạng Anh, La Liga, Serie A, Bundesliga, Ligue 1, Champions League) rồi bấm ngôi sao để theo dõi.</div>';}
+  else{
+    const r=[...clubs.keys()].filter(c=>norm(c).includes(q)).sort();
+    clubList.innerHTML=r.length?r.map(clubBtn).join(''):'<div style="color:var(--mute);font-size:13px">Không tìm thấy CLB phù hợp.</div>';
+  }
+  const f=[...S.fav].sort();
+  favList.innerHTML=f.length?f.map(clubBtn).join(''):'<div style="color:var(--mute);font-size:13px">Chưa có CLB nào.</div>';
+  clearRow.style.display=f.length?'flex':'none';
+}
+function drawNext(){
+  const now=Date.now();
+  if(!S.fav.size){nextWrap.innerHTML=`<div class="empty" style="margin-bottom:18px">☆ Hãy tìm câu lạc bộ bạn yêu thích bằng ô tìm kiếm và bấm ngôi sao để xem <b>lịch thi đấu</b> và <b>trận tiếp theo</b> của đội đó.</div>`;return}
+  const cards=[...S.fav].sort().map(c=>{
+    const n=M.filter(m=>(m.h===c||m.a===c)&&isUpcoming(m,now)).sort((a,b)=>a.t-b.t)[0];
+    if(!n)return `<div class="next"><div class="who">${crest(c)}${esc(c)}</div><div class="when" style="margin-top:6px">Chưa có lịch trận tiếp theo trong dữ liệu.</div></div>`;
+    const home=n.h===c,opp=home?n.a:n.h;
+    return `<div class="next"><div class="who">${crest(c)}${esc(c)}</div>
+      <div class="vs">${home?'vs':'@'} ${esc(opp)} <span style="font-weight:400;color:var(--mute);font-size:13px">(${home?'sân nhà':'sân khách'})</span></div>
+      <div class="when">${LG[n.lg]}<br>${fDate.format(n.t)} · <b style="color:var(--ink)">${fTime.format(n.t)}</b> (GMT+7)</div>
+      <span class="cd" data-cd="${n.t}">${countdown(n.t,now)}</span></div>`;
+  }).join('');
+  nextWrap.innerHTML=`<div class="panel" style="margin-bottom:18px;background:transparent;border:0;box-shadow:none;padding:0"><h2>Trận tiếp theo của CLB yêu thích</h2><div class="next-grid">${cards}</div></div>`;
+}
+function drawList(){
+  const now=Date.now();
+  if(!S.fav.size){list.innerHTML='';return}
+  let ms=M.filter(m=>S.fav.has(m.h)||S.fav.has(m.a));
+  const up=S.tab==='up';
+  ms=ms.filter(m=>up?isUpcoming(m,now):!isUpcoming(m,now));
+  ms.sort((a,b)=>up?a.t-b.t:b.t-a.t);
+  if(!ms.length){list.innerHTML=`<div class="empty">Không có trận ${up?'sắp diễn ra':'đã có kết quả'} theo bộ lọc hiện tại.</div>`;return}
+  let out='',last='';
+  for(const m of ms){
+    const k=fKey.format(m.t);
+    if(k!==last){out+=`<div class="day">${fDate.format(m.t)}</div>`;last=k}
+    const fav=S.fav.has(m.h)||S.fav.has(m.a);
+    const live=m.hs===null&&m.t<=now;
+    const mid=m.hs===null?(live?'<span class="live">● ĐANG ĐÁ</span>':'vs'):`${m.hs} - ${m.as}`;
+    out+=`<div class="match ${fav?'fav-row':''}" data-i="${m.i}" role="button" tabindex="0" aria-label="Xem chi tiết ${esc(m.h)} gặp ${esc(m.a)}"><div class="t">${fTime.format(m.t)}<small>GMT+7</small></div>
+      <div class="team h"><span>${esc(m.h)}</span>${crest(m.h)}</div>
+      <div class="score ${m.hs===null&&!live?'vs':''}">${mid}</div>
+      <div class="team a">${crest(m.a)}<span>${esc(m.a)}</span></div>
+      <div class="hint"><span>${LG[m.lg]}</span><b>${LINEUPS[m.h+'|'+m.a]?'Xem đội hình ›':'Chi tiết ›'}</b></div></div>`;
+  }
+  list.innerHTML=out;
+}
+function drawAll(){drawClubs();drawNext();drawList()}
+
+// ---- Sự kiện
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.club){const c=b.dataset.club;S.fav.has(c)?S.fav.delete(c):S.fav.add(c);persist();drawClubs();drawNext();drawList()}
+  else if(b.dataset.tab){S.tab=b.dataset.tab;document.querySelectorAll('[data-tab]').forEach(x=>x.setAttribute('aria-pressed',x===b));drawList()}
+  else if(b.id==='clearFav'){S.fav=new Set();persist();drawAll()}
+});
+// ---- Chi tiết trận: đội hình ra sân, dự bị, thống kê
+const POS={goalkeeper:['TM',0],defender:['HV',1],midfielder:['TV',2],forward:['TĐ',3]};
+function parsePlayer(s){
+  const mt=s.match(/^(.*?)\s*\(([^)]*)\)$/);const raw=mt?mt[1]:s,pos=mt?mt[2]:'';
+  const parts=raw.split(', ');const name=parts.length>1?parts[1]+' '+parts[0]:raw;
+  const p=POS[pos]||['',9];return{name,tag:p[0],rank:p[1]};
+}
+const plRow=(p,cls)=>`<div class="pl ${cls||''}"><i>${p.tag||'–'}</i><span>${esc(p.name)}</span></div>`;
+function teamCol(title,arr){
+  const all=arr.map(parsePlayer);
+  const st=all.slice(0,11).sort((a,b)=>a.rank-b.rank),bn=all.slice(11);
+  return {st:`<div><div class="ct">${esc(title)}</div>${st.map(p=>plRow(p)).join('')}</div>`,
+          bn:`<div><div class="ct">${esc(title)}</div>${bn.map(p=>plRow(p,'sub')).join('')}</div>`};
+}
+function statRow(label,a,b,suffix=''){return `<div class="st"><span class="l">${a}${suffix}</span><span class="n">${label}</span><span class="r">${b}${suffix}</span></div>`}
+function openMatch(i){
+  const m=M[i],now=Date.now(),L=LINEUPS[m.h+'|'+m.a];
+  const done=m.hs!==null,live=!done&&m.t<=now&&now<m.t+MATCH_MS;
+  const mid=done?`${m.hs} - ${m.as}`:(live?'● ĐANG ĐÁ':'vs');
+  const sub=done?'Đã kết thúc':(live?'Đang diễn ra':countdown(m.t,now));
+  let body='';
+  if(L){
+    const H=teamCol(m.h,L.h),A=teamCol(m.a,L.a);
+    body=`<h4>Đội hình ra sân</h4><div class="cols">${H.st}${A.st}</div>
+      <h4>Cầu thủ dự bị</h4><div class="cols">${H.bn}${A.bn}</div>
+      <h4>Thống kê trận đấu</h4>${statRow('Kiểm soát bóng',L.sh[0],L.sa[0],'%')}${statRow('Số cú sút',L.sh[1],L.sa[1])}${statRow('Sút trúng đích',L.sh[2],L.sa[2])}${statRow('Phạt góc',L.sh[3],L.sa[3])}${statRow('Phạm lỗi',L.sh[4],L.sa[4])}${statRow('Thẻ vàng',L.sh[5],L.sa[5])}
+      <p class="note">Đội hình lấy từ dữ liệu trận đấu đã chốt vào ngày ${UPDATED}. TM: thủ môn · HV: hậu vệ · TV: tiền vệ · TĐ: tiền đạo.</p>`;
+  }else{
+    const pub=m.t-60*60000;
+    body=done||live
+      ?`<div class="pend"><b>Chưa có dữ liệu đội hình cho trận này.</b><br>Bạn có thể nhắn Claude: "cập nhật đội hình ${esc(m.h)} – ${esc(m.a)}" để bổ sung vào trang nếu có dữ liệu.</div>`
+      :`<div class="pend"><b>Đội hình chưa được công bố.</b><br>Thông thường các CLB công bố đội hình ra sân khoảng 60 phút trước giờ bóng lăn, tức khoảng <b>${fTime.format(pub)} ngày ${fDate.format(pub).replace(/^[^,]+,\s*/,'')}</b> (GMT+7).<br>Sau thời điểm đó, nhắn Claude "cập nhật đội hình ${esc(m.h)} – ${esc(m.a)}" để trang hiển thị đội hình mới.</div>`;
+  }
+  modal.innerHTML=`<div class="mh"><button class="x" id="closeM" aria-label="Đóng">✕</button>
+    <div class="lgn">${LG[m.lg]}</div>
+    <div class="teams"><b>${esc(m.h)}</b><span class="big">${mid}</span><b>${esc(m.a)}</b></div>
+    <div class="sub">${fDate.format(m.t)} · ${fTime.format(m.t)} (GMT+7) · ${sub}</div></div><div class="mb">${body}</div>`;
+  ov.classList.add('on');document.body.style.overflow='hidden';
+}
+function closeMatch(){ov.classList.remove('on');document.body.style.overflow=''}
+list.addEventListener('click',e=>{const el=e.target.closest('.match');if(el)openMatch(+el.dataset.i)});
+list.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('match')){e.preventDefault();openMatch(+e.target.dataset.i)}});
+ov.addEventListener('click',e=>{if(e.target===ov||e.target.id==='closeM')closeMatch()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMatch()});
+clubSearch.addEventListener('input',e=>{S.q=e.target.value;drawClubs()});
+
+// ---- Đồng hồ & cập nhật tự động theo giờ thực
+function tick(){
+  const n=Date.now();
+  clockTime.textContent=fSec.format(n);
+  clockDate.textContent=fDate.format(n)+' · GMT+7';
+  document.querySelectorAll('[data-cd]').forEach(el=>el.textContent=countdown(+el.dataset.cd,n));
+}
+setInterval(tick,1000);
+// Mỗi phút: tự chuyển trận đã bắt đầu / kết thúc sang đúng mục và tính lại "trận tiếp theo"
+setInterval(()=>{drawNext();drawList()},60000);
+stamp.textContent=`Dữ liệu lịch & kết quả được chốt ngày ${UPDATED}. Giờ đếm ngược, ngày/giờ trận và phân loại "sắp diễn ra / kết quả" luôn tự tính theo giờ thực tại Việt Nam.`;
+drawAll();tick();
+</script>
+</body>
+</html>
 
