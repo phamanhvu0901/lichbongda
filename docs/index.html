@@ -312,7 +312,7 @@ VL|Đồng Nai|Hà Nội|2026-11-21T11:00|1|3
 VL|Thép Xanh Nam Định|Hải Phòng|2026-11-21T11:00|2|1
 VL|SHB Đà Nẵng|Ninh Bình|2026-11-22T11:00|0|1
 VL|Hồng Lĩnh Hà Tĩnh|CA TP.HCM|2026-11-22T11:00|2|1
-VL|Thép Xanh Nam Định|Công an Hà Nội|2026-11-27T11:00||
+VL|Thép Xanh Nam Định|Công an Hà Nội|2026-11-27T11:00|0|0
 VL|Sông Lam Nghệ An|Ninh Bình|2026-11-27T11:00||
 VL|Bắc Ninh|SHB Đà Nẵng|2026-11-28T11:00||
 VL|CA TP.HCM|HAGL|2026-11-28T11:00||
@@ -430,7 +430,9 @@ const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&q
 const LOGOS={
 };
 function crest(n){const ini=n.replace(/^\d+\.\s*/,'').split(/\s+/).map(w=>w[0]).join('').slice(0,3).toUpperCase(),[c,c2]=CLUB_COLORS[n]||['#4a5a52','#ffffff'];const img=LOGOS[n]?`<img src="${esc(LOGOS[n])}" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()">`:'';return `<span class="crest" style="background:${c};color:${inkOn(c)};box-shadow:0 0 0 1.5px ${c2}">${esc(ini)}${img}</span>`}
-const isUpcoming=(m,now)=>m.hs===null&&m.t+MATCH_MS>now;
+const isOver=(m,now)=>now>=m.t+MATCH_MS;
+const isLive=(m,now)=>m.hs===null&&m.t<=now&&!isOver(m,now);
+const isUpcoming=(m,now)=>m.hs===null&&!isOver(m,now);
 function countdown(t,now){
   const d=t-now; if(d<=0)return 'Đang diễn ra';
   const days=Math.floor(d/864e5),h=Math.floor(d%864e5/36e5),mi=Math.floor(d%36e5/6e4);
@@ -495,8 +497,8 @@ function drawList(){
     const k=fKey.format(m.t);
     if(k!==last){out+=`<div class="day">${fDate.format(m.t)}</div>`;last=k}
     const fav=S.fav.has(m.h)||S.fav.has(m.a);
-    const live=m.hs===null&&m.t<=now;
-    const mid=m.hs===null?(live?'<span class="live">● ĐANG ĐÁ</span>':'vs'):`${m.hs} - ${m.as}`;
+    const live=isLive(m,now);
+    const mid=m.hs!==null?`${m.hs} - ${m.as}`:live?'<span class="live">● ĐANG ĐÁ</span>':isOver(m,now)?'Chờ kết quả':'vs';
     out+=`<div class="match ${fav?'fav-row':''}" data-i="${m.i}" role="button" tabindex="0" aria-label="Xem chi tiết ${esc(m.h)} gặp ${esc(m.a)}"><div class="t">${fTime.format(m.t)}<small>GMT+7</small></div>
       <div class="team h"><span>${esc(m.h)}</span>${crest(m.h)}</div>
       <div class="score ${m.hs===null&&!live?'vs':''}">${mid}</div>
@@ -641,9 +643,9 @@ function statRow(label,a,b,suffix=''){return `<div class="st"><span class="l">${
 const STATS=[['Kiểm soát bóng','%'],['Số cú sút',''],['Sút trúng đích',''],['Phạt góc',''],['Phạm lỗi',''],['Thẻ vàng','']];
 function openMatch(i){
   const m=M[i],now=Date.now(),L=LINEUPS[m.h+'|'+m.a];
-  const done=m.hs!==null,live=!done&&m.t<=now&&now<m.t+MATCH_MS;
+  const done=m.hs!==null,live=isLive(m,now),waiting=!done&&isOver(m,now);
   const mid=done?`${m.hs} - ${m.as}`:(live?'● ĐANG ĐÁ':'vs');
-  const sub=done?'Đã kết thúc':(live?'Đang diễn ra':countdown(m.t,now));
+  const sub=done?'Đã kết thúc':live?'Đang diễn ra':waiting?'Chờ cập nhật kết quả':countdown(m.t,now);
   let body='';
   if(L){
     const H=teamCol(m.h,L.h),A=teamCol(m.a,L.a);
@@ -655,7 +657,7 @@ function openMatch(i){
       :`<p class="note">Dữ liệu chốt ngày ${UPDATED}. TM: thủ môn · HV: hậu vệ · TV: tiền vệ · TĐ: tiền đạo.</p>`;
   }else{
     const pub=m.t-60*60000;
-    body=done||live
+    body=done||live||waiting
       ?`<div class="pend"><b>Chưa có dữ liệu đội hình cho trận này.</b><br>Bạn có thể nhắn Claude: "cập nhật đội hình ${esc(m.h)} – ${esc(m.a)}" để bổ sung vào trang nếu có dữ liệu.</div>`
       :`<div class="pend"><b>Đội hình chưa được công bố.</b><br>Thông thường các CLB công bố đội hình ra sân khoảng 60 phút trước giờ bóng lăn, tức khoảng <b>${fTime.format(pub)} ngày ${fDate.format(pub).replace(/^[^,]+,\s*/,'')}</b> (GMT+7).<br>Sau thời điểm đó, nhắn Claude "cập nhật đội hình ${esc(m.h)} – ${esc(m.a)}" để trang hiển thị đội hình mới.</div>`;
   }
