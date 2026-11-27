@@ -1,0 +1,31 @@
+name: Cap nhat ty so
+on:
+  schedule:
+    - cron: '7,37 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency: cap-nhat-ty-so
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/update.js
+        env:
+          FOOTBALL_DATA_KEY: ${{ secrets.FOOTBALL_DATA_KEY }}
+      - name: Luu ket qua va dung lai trang
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add results.json
+          git diff --cached --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Cap nhat ty so"
+          git push
+          gh api -X POST "repos/$GITHUB_REPOSITORY/pages/builds"
