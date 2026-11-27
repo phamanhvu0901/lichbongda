@@ -24,6 +24,8 @@ const day = n => new Date(Date.now() + n * 864e5).toISOString().slice(0, 10);
     if (!lg || ['POSTPONED', 'CANCELLED', 'SUSPENDED'].includes(m.status)) continue;
     if (!m.homeTeam.name || !m.awayTeam.name) continue; // chưa xác định đội
     const done = m.status === 'FINISHED' && m.score.fullTime.home != null;
+    // API đôi khi trả lại trạng thái cũ: không xóa tỷ số đã lưu
+    if (!done && all.get(m.id)?.hs != null) continue;
     all.set(m.id, {
       id: m.id, lg, utc: m.utcDate,
       home: [m.homeTeam.name, m.homeTeam.shortName],
