@@ -1001,8 +1001,8 @@
    "Borussia Mönchengladbach",
    "M'gladbach"
   ],
-  "hs": 3,
-  "as": 3
+  "hs": null,
+  "as": null
  },
  {
   "id": 558515,
@@ -1016,8 +1016,8 @@
    "Bologna FC 1909",
    "Bologna"
   ],
-  "hs": 0,
-  "as": 0
+  "hs": null,
+  "as": null
  },
  {
   "id": 559616,
@@ -1031,8 +1031,8 @@
    "Paris FC",
    "Paris FC"
   ],
-  "hs": 1,
-  "as": 0
+  "hs": null,
+  "as": null
  },
  {
   "id": 560658,
@@ -1046,8 +1046,8 @@
    "Chelsea FC",
    "Chelsea"
   ],
-  "hs": 3,
-  "as": 2
+  "hs": null,
+  "as": null
  },
  {
   "id": 564765,
@@ -1061,7 +1061,1687 @@
    "Real Racing Club de Santander",
    "Santander"
   ],
-  "hs": 1,
-  "as": 3
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564760,
+  "lg": "LL",
+  "utc": "2026-11-28T13:00:00Z",
+  "home": [
+   "Real Betis Balompié",
+   "Real Betis"
+  ],
+  "away": [
+   "Rayo Vallecano de Madrid",
+   "Rayo Vallecano"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558513,
+  "lg": "SA",
+  "utc": "2026-11-28T14:00:00Z",
+  "home": [
+   "Frosinone Calcio",
+   "Frosinone"
+  ],
+  "away": [
+   "Parma Calcio 1913",
+   "Parma"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565866,
+  "lg": "BL",
+  "utc": "2026-11-28T14:30:00Z",
+  "home": [
+   "1. FC Köln",
+   "1. FC Köln"
+  ],
+  "away": [
+   "SV 07 Elversberg",
+   "Elversberg"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565867,
+  "lg": "BL",
+  "utc": "2026-11-28T14:30:00Z",
+  "home": [
+   "1. FSV Mainz 05",
+   "Mainz"
+  ],
+  "away": [
+   "1. FC Union Berlin",
+   "Union Berlin"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565868,
+  "lg": "BL",
+  "utc": "2026-11-28T14:30:00Z",
+  "home": [
+   "SC Paderborn 07",
+   "SC Paderborn"
+  ],
+  "away": [
+   "FC Schalke 04",
+   "Schalke"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565874,
+  "lg": "BL",
+  "utc": "2026-11-28T14:30:00Z",
+  "home": [
+   "Hamburger SV",
+   "HSV"
+  ],
+  "away": [
+   "FC Bayern München",
+   "Bayern"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560652,
+  "lg": "EPL",
+  "utc": "2026-11-28T15:00:00Z",
+  "home": [
+   "Leeds United FC",
+   "Leeds United"
+  ],
+  "away": [
+   "Coventry City FC",
+   "Coventry City"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560655,
+  "lg": "EPL",
+  "utc": "2026-11-28T15:00:00Z",
+  "home": [
+   "Manchester United FC",
+   "Man United"
+  ],
+  "away": [
+   "Brentford FC",
+   "Brentford"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564767,
+  "lg": "LL",
+  "utc": "2026-11-28T15:15:00Z",
+  "home": [
+   "Málaga CF",
+   "Málaga"
+  ],
+  "away": [
+   "Athletic Club",
+   "Athletic"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559612,
+  "lg": "L1",
+  "utc": "2026-11-28T16:15:00Z",
+  "home": [
+   "Angers SCO",
+   "Angers SCO"
+  ],
+  "away": [
+   "Racing Club de Lens",
+   "RC Lens"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558514,
+  "lg": "SA",
+  "utc": "2026-11-28T17:00:00Z",
+  "home": [
+   "Torino FC",
+   "Torino"
+  ],
+  "away": [
+   "SS Lazio",
+   "Lazio"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560653,
+  "lg": "EPL",
+  "utc": "2026-11-28T17:30:00Z",
+  "home": [
+   "Ipswich Town FC",
+   "Ipswich Town"
+  ],
+  "away": [
+   "Aston Villa FC",
+   "Aston Villa"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564759,
+  "lg": "LL",
+  "utc": "2026-11-28T17:30:00Z",
+  "home": [
+   "Elche CF",
+   "Elche"
+  ],
+  "away": [
+   "Club Atlético de Madrid",
+   "Atleti"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565870,
+  "lg": "BL",
+  "utc": "2026-11-28T17:30:00Z",
+  "home": [
+   "VfB Stuttgart",
+   "Stuttgart"
+  ],
+  "away": [
+   "Eintracht Frankfurt",
+   "Frankfurt"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558518,
+  "lg": "SA",
+  "utc": "2026-11-28T19:45:00Z",
+  "home": [
+   "FC Internazionale Milano",
+   "Inter"
+  ],
+  "away": [
+   "Genoa CFC",
+   "Genoa"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559613,
+  "lg": "L1",
+  "utc": "2026-11-28T19:45:00Z",
+  "home": [
+   "Le Havre AC",
+   "Le Havre"
+  ],
+  "away": [
+   "RC Strasbourg Alsace",
+   "Strasbourg"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559614,
+  "lg": "L1",
+  "utc": "2026-11-28T19:45:00Z",
+  "home": [
+   "Paris Saint-Germain FC",
+   "PSG"
+  ],
+  "away": [
+   "FC Lorient",
+   "Lorient"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559617,
+  "lg": "L1",
+  "utc": "2026-11-28T19:45:00Z",
+  "home": [
+   "Le Mans FC",
+   "Le Mans"
+  ],
+  "away": [
+   "Lille OSC",
+   "Lille"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559620,
+  "lg": "L1",
+  "utc": "2026-11-28T19:45:00Z",
+  "home": [
+   "OGC Nice",
+   "Nice"
+  ],
+  "away": [
+   "ES Troyes AC",
+   "Troyes"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564762,
+  "lg": "LL",
+  "utc": "2026-11-28T20:00:00Z",
+  "home": [
+   "Real Madrid CF",
+   "Real Madrid"
+  ],
+  "away": [
+   "Deportivo Alavés",
+   "Alavés"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558517,
+  "lg": "SA",
+  "utc": "2026-11-29T11:30:00Z",
+  "home": [
+   "Udinese Calcio",
+   "Udinese"
+  ],
+  "away": [
+   "ACF Fiorentina",
+   "Fiorentina"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560656,
+  "lg": "EPL",
+  "utc": "2026-11-29T12:00:00Z",
+  "home": [
+   "Everton FC",
+   "Everton"
+  ],
+  "away": [
+   "Liverpool FC",
+   "Liverpool"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564761,
+  "lg": "LL",
+  "utc": "2026-11-29T13:00:00Z",
+  "home": [
+   "Valencia CF",
+   "Valencia"
+  ],
+  "away": [
+   "CA Osasuna",
+   "Osasuna"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558509,
+  "lg": "SA",
+  "utc": "2026-11-29T14:00:00Z",
+  "home": [
+   "US Sassuolo Calcio",
+   "Sassuolo"
+  ],
+  "away": [
+   "SSC Napoli",
+   "Napoli"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559619,
+  "lg": "L1",
+  "utc": "2026-11-29T14:00:00Z",
+  "home": [
+   "AJ Auxerre",
+   "Auxerre"
+  ],
+  "away": [
+   "Olympique de Marseille",
+   "Marseille"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560657,
+  "lg": "EPL",
+  "utc": "2026-11-29T14:05:00Z",
+  "home": [
+   "Fulham FC",
+   "Fulham"
+  ],
+  "away": [
+   "AFC Bournemouth",
+   "Bournemouth"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560659,
+  "lg": "EPL",
+  "utc": "2026-11-29T14:05:00Z",
+  "home": [
+   "Brighton & Hove Albion FC",
+   "Brighton Hove"
+  ],
+  "away": [
+   "Newcastle United FC",
+   "Newcastle"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560660,
+  "lg": "EPL",
+  "utc": "2026-11-29T14:05:00Z",
+  "home": [
+   "Sunderland AFC",
+   "Sunderland"
+  ],
+  "away": [
+   "Tottenham Hotspur FC",
+   "Tottenham"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560661,
+  "lg": "EPL",
+  "utc": "2026-11-29T14:05:00Z",
+  "home": [
+   "Crystal Palace FC",
+   "Crystal Palace"
+  ],
+  "away": [
+   "Hull City AFC",
+   "Hull City"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565873,
+  "lg": "BL",
+  "utc": "2026-11-29T14:30:00Z",
+  "home": [
+   "SC Freiburg",
+   "Freiburg"
+  ],
+  "away": [
+   "RB Leipzig",
+   "RB Leipzig"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564766,
+  "lg": "LL",
+  "utc": "2026-11-29T15:15:00Z",
+  "home": [
+   "RC Deportivo La Coruña",
+   "Deportivo"
+  ],
+  "away": [
+   "FC Barcelona",
+   "Barça"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559618,
+  "lg": "L1",
+  "utc": "2026-11-29T16:15:00Z",
+  "home": [
+   "Toulouse FC",
+   "Toulouse"
+  ],
+  "away": [
+   "Stade Rennais FC 1901",
+   "Stade Rennais"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560654,
+  "lg": "EPL",
+  "utc": "2026-11-29T16:30:00Z",
+  "home": [
+   "Arsenal FC",
+   "Arsenal"
+  ],
+  "away": [
+   "Manchester City FC",
+   "Man City"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565871,
+  "lg": "BL",
+  "utc": "2026-11-29T16:30:00Z",
+  "home": [
+   "TSG 1899 Hoffenheim",
+   "Hoffenheim"
+  ],
+  "away": [
+   "FC Augsburg",
+   "Augsburg"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558512,
+  "lg": "SA",
+  "utc": "2026-11-29T17:00:00Z",
+  "home": [
+   "AS Roma",
+   "Roma"
+  ],
+  "away": [
+   "AC Monza",
+   "Monza"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564758,
+  "lg": "LL",
+  "utc": "2026-11-29T17:30:00Z",
+  "home": [
+   "RC Celta de Vigo",
+   "Celta"
+  ],
+  "away": [
+   "Villarreal CF",
+   "Villarreal"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565872,
+  "lg": "BL",
+  "utc": "2026-11-29T18:30:00Z",
+  "home": [
+   "Borussia Dortmund",
+   "Dortmund"
+  ],
+  "away": [
+   "Bayer 04 Leverkusen",
+   "Leverkusen"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558511,
+  "lg": "SA",
+  "utc": "2026-11-29T19:45:00Z",
+  "home": [
+   "Como 1907",
+   "Como 1907"
+  ],
+  "away": [
+   "Juventus FC",
+   "Juventus"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559615,
+  "lg": "L1",
+  "utc": "2026-11-29T19:45:00Z",
+  "home": [
+   "Olympique Lyonnais",
+   "Olympique Lyon"
+  ],
+  "away": [
+   "AS Monaco FC",
+   "Monaco"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564764,
+  "lg": "LL",
+  "utc": "2026-11-29T20:00:00Z",
+  "home": [
+   "Real Sociedad de Fútbol",
+   "Real Sociedad"
+  ],
+  "away": [
+   "Sevilla FC",
+   "Sevilla FC"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558516,
+  "lg": "SA",
+  "utc": "2026-11-30T17:30:00Z",
+  "home": [
+   "US Lecce",
+   "Lecce"
+  ],
+  "away": [
+   "Atalanta BC",
+   "Atalanta"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558510,
+  "lg": "SA",
+  "utc": "2026-11-30T19:45:00Z",
+  "home": [
+   "Cagliari Calcio",
+   "Cagliari"
+  ],
+  "away": [
+   "AC Milan",
+   "Milan"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564763,
+  "lg": "LL",
+  "utc": "2026-11-30T20:00:00Z",
+  "home": [
+   "RCD Espanyol de Barcelona",
+   "Espanyol"
+  ],
+  "away": [
+   "Getafe CF",
+   "Getafe"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560668,
+  "lg": "EPL",
+  "utc": "2026-12-01T20:00:00Z",
+  "home": [
+   "Coventry City FC",
+   "Coventry City"
+  ],
+  "away": [
+   "Ipswich Town FC",
+   "Ipswich Town"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564855,
+  "lg": "LL",
+  "utc": "2026-12-02T18:00:00Z",
+  "home": [
+   "Real Sociedad de Fútbol",
+   "Real Sociedad"
+  ],
+  "away": [
+   "Real Madrid CF",
+   "Real Madrid"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560663,
+  "lg": "EPL",
+  "utc": "2026-12-02T19:30:00Z",
+  "home": [
+   "Liverpool FC",
+   "Liverpool"
+  ],
+  "away": [
+   "Sunderland AFC",
+   "Sunderland"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560664,
+  "lg": "EPL",
+  "utc": "2026-12-02T19:30:00Z",
+  "home": [
+   "Hull City AFC",
+   "Hull City"
+  ],
+  "away": [
+   "Nottingham Forest FC",
+   "Nottingham"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560665,
+  "lg": "EPL",
+  "utc": "2026-12-02T19:30:00Z",
+  "home": [
+   "Chelsea FC",
+   "Chelsea"
+  ],
+  "away": [
+   "Crystal Palace FC",
+   "Crystal Palace"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560669,
+  "lg": "EPL",
+  "utc": "2026-12-02T19:30:00Z",
+  "home": [
+   "Manchester City FC",
+   "Man City"
+  ],
+  "away": [
+   "Leeds United FC",
+   "Leeds United"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560666,
+  "lg": "EPL",
+  "utc": "2026-12-02T20:15:00Z",
+  "home": [
+   "Aston Villa FC",
+   "Aston Villa"
+  ],
+  "away": [
+   "Everton FC",
+   "Everton"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560667,
+  "lg": "EPL",
+  "utc": "2026-12-02T20:15:00Z",
+  "home": [
+   "Brentford FC",
+   "Brentford"
+  ],
+  "away": [
+   "Arsenal FC",
+   "Arsenal"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560670,
+  "lg": "EPL",
+  "utc": "2026-12-02T20:15:00Z",
+  "home": [
+   "Newcastle United FC",
+   "Newcastle"
+  ],
+  "away": [
+   "Manchester United FC",
+   "Man United"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560671,
+  "lg": "EPL",
+  "utc": "2026-12-02T20:15:00Z",
+  "home": [
+   "AFC Bournemouth",
+   "Bournemouth"
+  ],
+  "away": [
+   "Brighton & Hove Albion FC",
+   "Brighton Hove"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564857,
+  "lg": "LL",
+  "utc": "2026-12-02T20:30:00Z",
+  "home": [
+   "FC Barcelona",
+   "Barça"
+  ],
+  "away": [
+   "Club Atlético de Madrid",
+   "Atleti"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560662,
+  "lg": "EPL",
+  "utc": "2026-12-03T20:00:00Z",
+  "home": [
+   "Tottenham Hotspur FC",
+   "Tottenham"
+  ],
+  "away": [
+   "Fulham FC",
+   "Fulham"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565882,
+  "lg": "BL",
+  "utc": "2026-12-04T19:30:00Z",
+  "home": [
+   "FC Bayern München",
+   "Bayern"
+  ],
+  "away": [
+   "SC Paderborn 07",
+   "SC Paderborn"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558502,
+  "lg": "SA",
+  "utc": "2026-12-04T19:45:00Z",
+  "home": [
+   "Bologna FC 1909",
+   "Bologna"
+  ],
+  "away": [
+   "AS Roma",
+   "Roma"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559609,
+  "lg": "L1",
+  "utc": "2026-12-04T19:45:00Z",
+  "home": [
+   "Toulouse FC",
+   "Toulouse"
+  ],
+  "away": [
+   "Paris Saint-Germain FC",
+   "PSG"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564770,
+  "lg": "LL",
+  "utc": "2026-12-04T20:00:00Z",
+  "home": [
+   "Deportivo Alavés",
+   "Alavés"
+  ],
+  "away": [
+   "RCD Espanyol de Barcelona",
+   "Espanyol"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560676,
+  "lg": "EPL",
+  "utc": "2026-12-05T12:30:00Z",
+  "home": [
+   "Chelsea FC",
+   "Chelsea"
+  ],
+  "away": [
+   "Liverpool FC",
+   "Liverpool"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564772,
+  "lg": "LL",
+  "utc": "2026-12-05T13:00:00Z",
+  "home": [
+   "Real Racing Club de Santander",
+   "Santander"
+  ],
+  "away": [
+   "RC Deportivo La Coruña",
+   "Deportivo"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558507,
+  "lg": "SA",
+  "utc": "2026-12-05T14:00:00Z",
+  "home": [
+   "AC Monza",
+   "Monza"
+  ],
+  "away": [
+   "Como 1907",
+   "Como 1907"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565875,
+  "lg": "BL",
+  "utc": "2026-12-05T14:30:00Z",
+  "home": [
+   "1. FC Union Berlin",
+   "Union Berlin"
+  ],
+  "away": [
+   "Hamburger SV",
+   "HSV"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565877,
+  "lg": "BL",
+  "utc": "2026-12-05T14:30:00Z",
+  "home": [
+   "Bayer 04 Leverkusen",
+   "Leverkusen"
+  ],
+  "away": [
+   "Borussia Mönchengladbach",
+   "M'gladbach"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565879,
+  "lg": "BL",
+  "utc": "2026-12-05T14:30:00Z",
+  "home": [
+   "RB Leipzig",
+   "RB Leipzig"
+  ],
+  "away": [
+   "1. FSV Mainz 05",
+   "Mainz"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565881,
+  "lg": "BL",
+  "utc": "2026-12-05T14:30:00Z",
+  "home": [
+   "SC Freiburg",
+   "Freiburg"
+  ],
+  "away": [
+   "TSG 1899 Hoffenheim",
+   "Hoffenheim"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565883,
+  "lg": "BL",
+  "utc": "2026-12-05T14:30:00Z",
+  "home": [
+   "FC Augsburg",
+   "Augsburg"
+  ],
+  "away": [
+   "1. FC Köln",
+   "1. FC Köln"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560673,
+  "lg": "EPL",
+  "utc": "2026-12-05T15:00:00Z",
+  "home": [
+   "Manchester United FC",
+   "Man United"
+  ],
+  "away": [
+   "Coventry City FC",
+   "Coventry City"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560674,
+  "lg": "EPL",
+  "utc": "2026-12-05T15:00:00Z",
+  "home": [
+   "Leeds United FC",
+   "Leeds United"
+  ],
+  "away": [
+   "Ipswich Town FC",
+   "Ipswich Town"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560678,
+  "lg": "EPL",
+  "utc": "2026-12-05T15:00:00Z",
+  "home": [
+   "AFC Bournemouth",
+   "Bournemouth"
+  ],
+  "away": [
+   "Hull City AFC",
+   "Hull City"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560679,
+  "lg": "EPL",
+  "utc": "2026-12-05T15:00:00Z",
+  "home": [
+   "Aston Villa FC",
+   "Aston Villa"
+  ],
+  "away": [
+   "Crystal Palace FC",
+   "Crystal Palace"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564777,
+  "lg": "LL",
+  "utc": "2026-12-05T15:15:00Z",
+  "home": [
+   "Rayo Vallecano de Madrid",
+   "Rayo Vallecano"
+  ],
+  "away": [
+   "Levante UD",
+   "Levante"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559606,
+  "lg": "L1",
+  "utc": "2026-12-05T16:15:00Z",
+  "home": [
+   "Lille OSC",
+   "Lille"
+  ],
+  "away": [
+   "AJ Auxerre",
+   "Auxerre"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558501,
+  "lg": "SA",
+  "utc": "2026-12-05T17:00:00Z",
+  "home": [
+   "Frosinone Calcio",
+   "Frosinone"
+  ],
+  "away": [
+   "FC Internazionale Milano",
+   "Inter"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560680,
+  "lg": "EPL",
+  "utc": "2026-12-05T17:30:00Z",
+  "home": [
+   "Nottingham Forest FC",
+   "Nottingham"
+  ],
+  "away": [
+   "Brighton & Hove Albion FC",
+   "Brighton Hove"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564776,
+  "lg": "LL",
+  "utc": "2026-12-05T17:30:00Z",
+  "home": [
+   "Villarreal CF",
+   "Villarreal"
+  ],
+  "away": [
+   "Real Sociedad de Fútbol",
+   "Real Sociedad"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565878,
+  "lg": "BL",
+  "utc": "2026-12-05T17:30:00Z",
+  "home": [
+   "Eintracht Frankfurt",
+   "Frankfurt"
+  ],
+  "away": [
+   "SV Werder Bremen",
+   "Bremen"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558508,
+  "lg": "SA",
+  "utc": "2026-12-05T19:45:00Z",
+  "home": [
+   "SSC Napoli",
+   "Napoli"
+  ],
+  "away": [
+   "US Lecce",
+   "Lecce"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559604,
+  "lg": "L1",
+  "utc": "2026-12-05T19:45:00Z",
+  "home": [
+   "AS Monaco FC",
+   "Monaco"
+  ],
+  "away": [
+   "Angers SCO",
+   "Angers SCO"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559605,
+  "lg": "L1",
+  "utc": "2026-12-05T19:45:00Z",
+  "home": [
+   "Racing Club de Lens",
+   "RC Lens"
+  ],
+  "away": [
+   "Le Havre AC",
+   "Le Havre"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559610,
+  "lg": "L1",
+  "utc": "2026-12-05T19:45:00Z",
+  "home": [
+   "RC Strasbourg Alsace",
+   "Strasbourg"
+  ],
+  "away": [
+   "FC Lorient",
+   "Lorient"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559611,
+  "lg": "L1",
+  "utc": "2026-12-05T19:45:00Z",
+  "home": [
+   "Paris FC",
+   "Paris FC"
+  ],
+  "away": [
+   "Le Mans FC",
+   "Le Mans"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560677,
+  "lg": "EPL",
+  "utc": "2026-12-05T20:00:00Z",
+  "home": [
+   "Brentford FC",
+   "Brentford"
+  ],
+  "away": [
+   "Manchester City FC",
+   "Man City"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564773,
+  "lg": "LL",
+  "utc": "2026-12-05T20:00:00Z",
+  "home": [
+   "FC Barcelona",
+   "Barça"
+  ],
+  "away": [
+   "RC Celta de Vigo",
+   "Celta"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558499,
+  "lg": "SA",
+  "utc": "2026-12-06T11:30:00Z",
+  "home": [
+   "Genoa CFC",
+   "Genoa"
+  ],
+  "away": [
+   "Torino FC",
+   "Torino"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564768,
+  "lg": "LL",
+  "utc": "2026-12-06T13:00:00Z",
+  "home": [
+   "CA Osasuna",
+   "Osasuna"
+  ],
+  "away": [
+   "Elche CF",
+   "Elche"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558504,
+  "lg": "SA",
+  "utc": "2026-12-06T14:00:00Z",
+  "home": [
+   "SS Lazio",
+   "Lazio"
+  ],
+  "away": [
+   "Atalanta BC",
+   "Atalanta"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559603,
+  "lg": "L1",
+  "utc": "2026-12-06T14:00:00Z",
+  "home": [
+   "ES Troyes AC",
+   "Troyes"
+  ],
+  "away": [
+   "Olympique Lyonnais",
+   "Olympique Lyon"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560675,
+  "lg": "EPL",
+  "utc": "2026-12-06T14:00:00Z",
+  "home": [
+   "Newcastle United FC",
+   "Newcastle"
+  ],
+  "away": [
+   "Sunderland AFC",
+   "Sunderland"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560681,
+  "lg": "EPL",
+  "utc": "2026-12-06T14:00:00Z",
+  "home": [
+   "Everton FC",
+   "Everton"
+  ],
+  "away": [
+   "Fulham FC",
+   "Fulham"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565876,
+  "lg": "BL",
+  "utc": "2026-12-06T14:30:00Z",
+  "home": [
+   "FC Schalke 04",
+   "Schalke"
+  ],
+  "away": [
+   "Borussia Dortmund",
+   "Dortmund"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564775,
+  "lg": "LL",
+  "utc": "2026-12-06T15:15:00Z",
+  "home": [
+   "Athletic Club",
+   "Athletic"
+  ],
+  "away": [
+   "Real Madrid CF",
+   "Real Madrid"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559608,
+  "lg": "L1",
+  "utc": "2026-12-06T16:15:00Z",
+  "home": [
+   "Stade Rennais FC 1901",
+   "Stade Rennais"
+  ],
+  "away": [
+   "Stade Brestois 29",
+   "Brest"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 560672,
+  "lg": "EPL",
+  "utc": "2026-12-06T16:30:00Z",
+  "home": [
+   "Tottenham Hotspur FC",
+   "Tottenham"
+  ],
+  "away": [
+   "Arsenal FC",
+   "Arsenal"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 565880,
+  "lg": "BL",
+  "utc": "2026-12-06T16:30:00Z",
+  "home": [
+   "SV 07 Elversberg",
+   "Elversberg"
+  ],
+  "away": [
+   "VfB Stuttgart",
+   "Stuttgart"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558500,
+  "lg": "SA",
+  "utc": "2026-12-06T17:00:00Z",
+  "home": [
+   "Juventus FC",
+   "Juventus"
+  ],
+  "away": [
+   "Udinese Calcio",
+   "Udinese"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564774,
+  "lg": "LL",
+  "utc": "2026-12-06T17:30:00Z",
+  "home": [
+   "Getafe CF",
+   "Getafe"
+  ],
+  "away": [
+   "Valencia CF",
+   "Valencia"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558505,
+  "lg": "SA",
+  "utc": "2026-12-06T19:45:00Z",
+  "home": [
+   "AC Milan",
+   "Milan"
+  ],
+  "away": [
+   "Parma Calcio 1913",
+   "Parma"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 559607,
+  "lg": "L1",
+  "utc": "2026-12-06T19:45:00Z",
+  "home": [
+   "Olympique de Marseille",
+   "Marseille"
+  ],
+  "away": [
+   "OGC Nice",
+   "Nice"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564771,
+  "lg": "LL",
+  "utc": "2026-12-06T20:00:00Z",
+  "home": [
+   "Club Atlético de Madrid",
+   "Atleti"
+  ],
+  "away": [
+   "Real Betis Balompié",
+   "Real Betis"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558506,
+  "lg": "SA",
+  "utc": "2026-12-07T17:30:00Z",
+  "home": [
+   "Venezia FC",
+   "Venezia FC"
+  ],
+  "away": [
+   "US Sassuolo Calcio",
+   "Sassuolo"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 558503,
+  "lg": "SA",
+  "utc": "2026-12-07T19:45:00Z",
+  "home": [
+   "ACF Fiorentina",
+   "Fiorentina"
+  ],
+  "away": [
+   "Cagliari Calcio",
+   "Cagliari"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564769,
+  "lg": "LL",
+  "utc": "2026-12-07T20:00:00Z",
+  "home": [
+   "Sevilla FC",
+   "Sevilla FC"
+  ],
+  "away": [
+   "Málaga CF",
+   "Málaga"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575413,
+  "lg": "UCL",
+  "utc": "2026-12-08T17:45:00Z",
+  "home": [
+   "Villarreal CF",
+   "Villarreal"
+  ],
+  "away": [
+   "Sabah FK",
+   "Sabah FK"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575414,
+  "lg": "UCL",
+  "utc": "2026-12-08T17:45:00Z",
+  "home": [
+   "Viking FK",
+   "Viking"
+  ],
+  "away": [
+   "Feyenoord Rotterdam",
+   "Feyenoord"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575415,
+  "lg": "UCL",
+  "utc": "2026-12-08T20:00:00Z",
+  "home": [
+   "FC Barcelona",
+   "Barça"
+  ],
+  "away": [
+   "Manchester City FC",
+   "Man City"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575416,
+  "lg": "UCL",
+  "utc": "2026-12-08T20:00:00Z",
+  "home": [
+   "Aston Villa FC",
+   "Aston Villa"
+  ],
+  "away": [
+   "Paris Saint-Germain FC",
+   "PSG"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575417,
+  "lg": "UCL",
+  "utc": "2026-12-08T20:00:00Z",
+  "home": [
+   "FC Bayern München",
+   "Bayern"
+  ],
+  "away": [
+   "SK Slavia Praha",
+   "Slavia Praha"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575418,
+  "lg": "UCL",
+  "utc": "2026-12-08T20:00:00Z",
+  "home": [
+   "SSC Napoli",
+   "Napoli"
+  ],
+  "away": [
+   "Club Brugge KV",
+   "Club Brugge"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575419,
+  "lg": "UCL",
+  "utc": "2026-12-08T20:00:00Z",
+  "home": [
+   "AS Roma",
+   "Roma"
+  ],
+  "away": [
+   "Sporting Clube de Portugal",
+   "Sporting CP"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575420,
+  "lg": "UCL",
+  "utc": "2026-12-08T20:00:00Z",
+  "home": [
+   "Manchester United FC",
+   "Man United"
+  ],
+  "away": [
+   "RB Leipzig",
+   "RB Leipzig"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575421,
+  "lg": "UCL",
+  "utc": "2026-12-08T20:00:00Z",
+  "home": [
+   "PAE AEK",
+   "PAE AEK"
+  ],
+  "away": [
+   "Galatasaray SK",
+   "Galatasaray"
+  ],
+  "hs": null,
+  "as": null
  }
 ]
