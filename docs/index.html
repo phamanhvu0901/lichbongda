@@ -687,6 +687,25 @@ setInterval(()=>{drawNext();drawList()},60000);
 stamp.textContent=`Dữ liệu lịch & kết quả được chốt ngày ${UPDATED}. Giờ đếm ngược, ngày/giờ trận và phân loại "sắp diễn ra / kết quả" luôn tự tính theo giờ thực tại Việt Nam.`;
 document.querySelectorAll('[data-tab]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.tab===S.tab));
 drawAll();tick();
+// ---- Tỷ số tự động (results.json do GitHub Actions tạo)
+const API_ALIAS={'Man City':['Manchester City'],'Man United':['Manchester United'],'Nottm Forest':['Nottingham Forest','Nottingham'],'Brighton':['Brighton & Hove Albion','Brighton Hove'],'Newcastle':['Newcastle United'],'Tottenham':['Tottenham Hotspur'],'Leeds':['Leeds United'],'Ipswich':['Ipswich Town'],'Coventry':['Coventry City'],'Athletic Bilbao':['Athletic','Athletic Club'],'Atlético Madrid':['Atleti','Atlético de Madrid'],'Celta Vigo':['Celta','RC Celta de Vigo'],'Deportivo La Coruña':['Deportivo','RC Deportivo de La Coruña'],'Real Betis':['Real Betis Balompié'],'Real Sociedad':['Real Sociedad de Fútbol'],'Inter Milan':['Inter','Internazionale Milano'],'Bayern Munich':['Bayern','Bayern München'],'1. FC Köln':['Köln'],'Bayer Leverkusen':['Leverkusen','Bayer 04 Leverkusen'],"M'gladbach":['Borussia Mönchengladbach'],'Borussia Dortmund':['Dortmund'],'Hamburger SV':['HSV','Hamburg'],'VfB Stuttgart':['Stuttgart'],'Paris Saint-Germain':['PSG'],'Olympique Lyon':['Lyon','Olympique Lyonnais'],'Olympique Marseille':['Marseille','Olympique de Marseille'],'AS Monaco':['Monaco'],'RC Lens':['Lens','Racing Club de Lens'],'Lille OSC':['Lille'],'FC Porto':['Porto'],'Club Brugge':['Club Brugge KV'],'Sporting CP':['Sporting Clube de Portugal'],'Slavia Prague':['SK Slavia Praha'],'Shakhtar Donetsk':['Shakhtar'],'AEK Athens':['AEK'],'Slovan Bratislava':['ŠK Slovan Bratislava'],'LASK Linz':['LASK']};
+const teamKey=s=>(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/ø/gi,'o').toLowerCase().replace(/[^a-z0-9]+/g,' ').split(' ').filter(w=>w&&!['fc','cf','afc','ac','as','sc','ssc','us','rc','ud','cd','ca'].includes(w)).join(' ');
+const sameTeam=(ours,api)=>{const k=[ours,...(API_ALIAS[ours]||[])].map(teamKey);return api.some(n=>k.includes(teamKey(n)))};
+function applyResults(list){
+  for(const r of list){
+    const t=Date.parse(r.utc);
+    const found=M.filter(m=>m.lg===r.lg&&Math.abs(m.t-t)<36*36e5&&sameTeam(m.h,r.home)&&sameTeam(m.a,r.away));
+    if(found.length===1){found[0].hs=r.hs;found[0].as=r.as}
+    else console.warn('Chưa khớp tên đội:',r.lg,r.home[0],'-',r.away[0]);
+  }
+}
+async function loadResults(){
+  try{
+    const res=await fetch('results.json',{cache:'no-store'});
+    if(res.ok){applyResults(await res.json());drawNext();drawList()}
+  }catch(e){console.warn('Không đọc được results.json',e)}
+}
+loadResults();setInterval(loadResults,5*60000);
 </script>
 </body>
 </html>
