@@ -12,7 +12,7 @@ const day = n => new Date(Date.now() + n * 864e5).toISOString().slice(0, 10);
   const { matches } = await res.json();
 
   let old = [];
-  try { old = JSON.parse(fs.readFileSync('results.json', 'utf8')); } catch {}
+  try { old = JSON.parse(fs.readFileSync('docs/results.json', 'utf8')); } catch {}
   const all = new Map(old.map(m => [m.id, m]));
   for (const m of matches) {
     const lg = LG[m.competition.code];
@@ -25,6 +25,7 @@ const day = n => new Date(Date.now() + n * 864e5).toISOString().slice(0, 10);
     });
   }
   const out = [...all.values()].sort((a, b) => a.utc.localeCompare(b.utc) || a.id - b.id);
-  fs.writeFileSync('results.json', JSON.stringify(out, null, 1) + '\n');
+  fs.mkdirSync('docs', { recursive: true });
+  fs.writeFileSync('docs/results.json', JSON.stringify(out, null, 1) + '\n');
   console.log(`Đã lưu ${out.length} kết quả`);
 })().catch(e => { console.error(e.message); process.exit(1); });
