@@ -172,7 +172,8 @@ input[type=search]:focus-visible{outline:2px solid var(--accent);outline-offset:
     <div id="nextWrap"></div>
     <div class="bar">
       <div class="seg" role="group" aria-label="Loại trận">
-        <button data-tab="up" aria-pressed="true">Sắp diễn ra</button>
+        <button data-tab="day" aria-pressed="true">Hôm nay</button>
+        <button data-tab="up" aria-pressed="false">Sắp diễn ra</button>
         <button data-tab="res" aria-pressed="false">Kết quả</button>
       </div>
     </div>
@@ -420,7 +421,7 @@ const clubs=new Map(); // tên -> Set giải
 M.forEach(m=>[m.h,m.a].forEach(c=>{if(!clubs.has(c))clubs.set(c,new Set());clubs.get(c).add(m.lg)}));
 const load=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}};
 const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
-const S={fav:new Set(load('fav',[]).filter(c=>clubs.has(c))),tab:load('tab','up')==='res'?'res':'up',q:''};
+const S={fav:new Set(load('fav',[]).filter(c=>clubs.has(c))),tab:'day',q:''};
 const persist=()=>save('fav',[...S.fav]);
 
 // ---- Tiện ích
@@ -439,6 +440,12 @@ function countdown(t,now){
   if(days>0)return `Còn ${days} ngày ${h} giờ`;
   if(h>0)return `Còn ${h} giờ ${mi} phút`;
   return `Còn ${mi} phút`;
+}
+
+// Ngày hiển thị ở tab đầu: hôm nay; nếu không có trận thì ngày sắp tới gần nhất, hết lịch thì ngày gần nhất đã qua
+function focusDay(now){
+  const today=fKey.format(now),days=[...new Set(M.map(m=>fKey.format(m.t)))].sort();
+  return {today,day:days.find(d=>d>=today)||days[days.length-1]};
 }
 
 // ---- Vẽ giao diện
@@ -486,13 +493,16 @@ function drawNext(){
 }
 function drawList(){
   const now=Date.now();
-  if(!S.fav.size){list.innerHTML='';return}
-  let ms=M.filter(m=>S.fav.has(m.h)||S.fav.has(m.a));
-  const up=S.tab==='up';
-  ms=ms.filter(m=>up?isUpcoming(m,now):!isUpcoming(m,now));
-  ms.sort((a,b)=>up?a.t-b.t:b.t-a.t);
+  const byDay=S.tab==='day',up=S.tab==='up',{today,day}=focusDay(now);
+  const label=document.querySelector('[data-tab="day"]');
+  label.textContent=day===today?'Hôm nay':'Ngày gần nhất';
+  if(!byDay&&!S.fav.size){list.innerHTML='';return}
+  // Tab theo ngày hiện mọi trận; hai tab còn lại chỉ hiện CLB đang theo dõi
+  const ms=byDay?M.filter(m=>fKey.format(m.t)===day)
+    :M.filter(m=>(S.fav.has(m.h)||S.fav.has(m.a))&&isUpcoming(m,now)===up);
+  ms.sort((a,b)=>byDay||up?a.t-b.t:b.t-a.t);
   if(!ms.length){list.innerHTML=`<div class="empty">Không có trận ${up?'sắp diễn ra':'đã có kết quả'} theo bộ lọc hiện tại.</div>`;return}
-  let out='',last='';
+  let out=byDay&&day!==today?'<div class="empty" style="padding:14px">Hôm nay không có trận. Đang hiện ngày có trận gần nhất.</div>':'',last='';
   for(const m of ms){
     const k=fKey.format(m.t);
     if(k!==last){out+=`<div class="day">${fDate.format(m.t)}</div>`;last=k}
@@ -514,7 +524,7 @@ document.addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b)return;
   if(b.dataset.open){openMatch(+b.dataset.open)}
   else if(b.dataset.club){const c=b.dataset.club;S.fav.has(c)?S.fav.delete(c):S.fav.add(c);persist();drawClubs();drawNext();drawList()}
-  else if(b.dataset.tab){S.tab=b.dataset.tab;save('tab',S.tab);document.querySelectorAll('[data-tab]').forEach(x=>x.setAttribute('aria-pressed',x===b));drawList()}
+  else if(b.dataset.tab){S.tab=b.dataset.tab;document.querySelectorAll('[data-tab]').forEach(x=>x.setAttribute('aria-pressed',x===b));drawList()}
   else if(b.id==='clearFav'){S.fav=new Set();persist();drawAll()}
 });
 // ---- Chi tiết trận: đội hình ra sân, dự bị, thống kê
