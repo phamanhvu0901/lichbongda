@@ -30,6 +30,8 @@ aside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-
 .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:14px}
 .panel h2{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
+.filter{margin-bottom:12px}
+.filter .chip{min-height:36px}
 .chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:6px 12px;font-size:14px}
 .chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
 .row-actions{display:flex;gap:10px;margin-top:8px;font-size:13px}
@@ -182,6 +184,7 @@ input[type=search]:focus-visible{outline:2px solid var(--accent);outline-offset:
         <button data-tab="res" aria-pressed="false">Kết quả</button>
       </div>
     </div>
+    <div class="chips filter" id="leagueBar" role="group" aria-label="Lọc theo giải đấu"></div>
     <div id="list"></div>
     <p class="note" id="stamp"></p>
   </section>
@@ -458,7 +461,7 @@ const clubs=new Map(); // tên -> Set giải
 M.forEach(m=>[m.h,m.a].forEach(c=>{if(!clubs.has(c))clubs.set(c,new Set());clubs.get(c).add(m.lg)}));
 const load=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}};
 const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
-const S={fav:new Set(load('fav',[]).filter(c=>clubs.has(c))),tab:'day',q:''};
+const S={fav:new Set(load('fav',[]).filter(c=>clubs.has(c))),lg:new Set(load('leagues',[]).filter(k=>k in LG)),tab:'day',q:''};
 const persist=()=>save('fav',[...S.fav]);
 
 // ---- Tiện ích
@@ -480,8 +483,8 @@ function countdown(t,now){
 }
 
 // Ngày hiển thị ở tab đầu: hôm nay; nếu không có trận thì ngày sắp tới gần nhất, hết lịch thì ngày gần nhất đã qua
-function focusDay(now){
-  const today=fKey.format(now),days=[...new Set(M.map(m=>fKey.format(m.t)))].sort();
+function focusDay(now,pool){
+  const today=fKey.format(now),days=[...new Set(pool.map(m=>fKey.format(m.t)))].sort();
   return {today,day:days.find(d=>d>=today)||days[days.length-1]};
 }
 
@@ -528,17 +531,24 @@ function drawNext(){
   }).join('');
   nextWrap.innerHTML=`<h2 class="next-title">Trận tiếp theo của CLB yêu thích</h2><div class="next-grid">${cards}</div>`;
 }
+// ---- Lọc theo giải đấu (không chọn giải nào = hiện tất cả)
+const inLeague=m=>!S.lg.size||S.lg.has(m.lg);
+leagueBar.innerHTML=[['','Tất cả'],...Object.entries(LG)].map(([k,v])=>`<button class="chip" data-lg="${k}">${v}</button>`).join('');
+function drawFilter(){
+  leagueBar.querySelectorAll('[data-lg]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.lg?S.lg.has(x.dataset.lg):!S.lg.size));
+}
 function drawList(){
   const now=Date.now();
-  const byDay=S.tab==='day',up=S.tab==='up',{today,day}=focusDay(now);
+  const byDay=S.tab==='day',up=S.tab==='up',pool=M.filter(inLeague),{today,day}=focusDay(now,pool);
   const label=document.querySelector('[data-tab="day"]');
+  drawFilter();
   label.textContent=day===today?'Hôm nay':'Ngày gần nhất';
   if(!byDay&&!S.fav.size){list.innerHTML='';return}
   // Tab theo ngày hiện mọi trận; hai tab còn lại chỉ hiện CLB đang theo dõi
-  const ms=byDay?M.filter(m=>fKey.format(m.t)===day)
-    :M.filter(m=>(S.fav.has(m.h)||S.fav.has(m.a))&&isUpcoming(m,now)===up);
+  const ms=byDay?pool.filter(m=>fKey.format(m.t)===day)
+    :pool.filter(m=>(S.fav.has(m.h)||S.fav.has(m.a))&&isUpcoming(m,now)===up);
   ms.sort((a,b)=>byDay||up?a.t-b.t:b.t-a.t);
-  if(!ms.length){list.innerHTML=`<div class="empty">Không có trận ${up?'sắp diễn ra':'đã có kết quả'} theo bộ lọc hiện tại.</div>`;return}
+  if(!ms.length){list.innerHTML=`<div class="empty">Không có trận ${byDay?'nào':up?'sắp diễn ra':'đã có kết quả'} theo bộ lọc hiện tại.</div>`;return}
   let out=byDay&&day!==today?'<div class="empty" style="padding:14px">Hôm nay không có trận. Đang hiện ngày có trận gần nhất.</div>':'',last='';
   for(const m of ms){
     const k=fKey.format(m.t);
@@ -560,6 +570,7 @@ function drawAll(){drawClubs();drawNext();drawList()}
 document.addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b)return;
   if(b.dataset.open){openMatch(+b.dataset.open)}
+  else if(b.dataset.lg!==undefined){const k=b.dataset.lg;if(!k)S.lg.clear();else S.lg.has(k)?S.lg.delete(k):S.lg.add(k);save('leagues',[...S.lg]);drawList()}
   else if(b.dataset.club){const c=b.dataset.club;S.fav.has(c)?S.fav.delete(c):S.fav.add(c);persist();drawClubs();drawNext();drawList()}
   else if(b.dataset.tab){S.tab=b.dataset.tab;document.querySelectorAll('[data-tab]').forEach(x=>x.setAttribute('aria-pressed',x===b));drawList()}
   else if(b.id==='clearFav'){S.fav=new Set();persist();drawAll()}
