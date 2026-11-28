@@ -192,7 +192,7 @@ input[type=search]:focus-visible{outline:2px solid var(--accent);outline-offset:
 <script>
 const TZ='Asia/Ho_Chi_Minh';
 const UPDATED='26/11/2026';
-const LG={VL:'V.League 1',EPL:'Ngoại hạng Anh',LL:'La Liga',SA:'Serie A',BL:'Bundesliga',L1:'Ligue 1',UCL:'Champions League'};
+const LG={VL:'V.League 1',EPL:'Ngoại hạng Anh',LL:'La Liga',SA:'Serie A',BL:'Bundesliga',L1:'Ligue 1',UCL:'Champions League',ACLE:'AFC Champions League Elite'};
 // Dạng: giải|chủ nhà|khách|giờ UTC|bàn chủ|bàn khách (để trống nếu chưa đá)
 const RAW=`
 EPL|Man City|Fulham|2026-11-21T12:30|1|1
@@ -332,6 +332,38 @@ VL|Ninh Bình|Công an Hà Nội|2026-12-06T11:00||
 VL|Sông Lam Nghệ An|Thanh Hóa|2026-12-06T11:00||
 VL|Hà Nội|Hải Phòng|2026-12-06T12:15||
 VL|SHB Đà Nẵng|Thể Công Viettel|2026-12-07T11:00||
+ACLE|Neftchi|Al Hilal|2026-11-23T13:45|2|2
+ACLE|Al Ain|Esteghlal|2026-11-23T16:00|1|1
+ACLE|Tractor|Al Wasl|2026-11-23T16:00|1|5
+ACLE|Al Shamal|Al Ahli|2026-11-23T16:00|3|2
+ACLE|Al Ittihad|Pakhtakor|2026-11-23T18:15|2|0
+ACLE|Al Quwa Al Jawiya|Al Gharafa|2026-11-23T18:15|2|1
+ACLE|Newcastle Jets|Kashiwa Reysol|2026-11-24T07:45|1|2
+ACLE|Daejeon Hana Citizen|Beijing Guoan|2026-11-24T10:00|3|2
+ACLE|Kyoto Sanga|Pohang Steelers|2026-11-24T10:00|1|0
+ACLE|Công an Hà Nội|Vissel Kobe|2026-11-24T12:15|3|1
+ACLE|Shanghai Port|Buriram United|2026-11-24T12:15|3|1
+ACLE|Ratchaburi|Johor Darul Ta'zim|2026-11-24T12:15|1|1
+ACLE|Shabab Al Ahli|Al Qadsiah|2026-11-24T16:00|1|5
+ACLE|Al Nassr|Al Sadd|2026-11-24T18:15|2|1
+ACLE|Kashima Antlers|Jeonbuk Hyundai Motors|2026-11-25T10:00|3|0
+ACLE|Gamba Osaka|Port FC|2026-11-25T10:00|2|0
+ACLE|Kashiwa Reysol|Công an Hà Nội|2026-12-01T10:00||
+ACLE|Pohang Steelers|Shanghai Port|2026-12-01T10:00||
+ACLE|Vissel Kobe|Newcastle Jets|2026-12-01T10:00||
+ACLE|Beijing Guoan|Ratchaburi|2026-12-01T12:15||
+ACLE|Buriram United|Kyoto Sanga|2026-12-01T12:15||
+ACLE|Johor Darul Ta'zim|Daejeon Hana Citizen|2026-12-01T12:15||
+ACLE|Jeonbuk Hyundai Motors|Gamba Osaka|2026-12-02T10:00||
+ACLE|Port FC|Kashima Antlers|2026-12-02T12:15||
+ACLE|Pakhtakor|Tractor|2026-12-07T13:45||
+ACLE|Al Qadsiah|Al Shamal|2026-12-07T16:00||
+ACLE|Al Wasl|Al Ittihad|2026-12-07T16:00||
+ACLE|Al Hilal|Al Ain|2026-12-07T18:15||
+ACLE|Al Sadd|Al Quwa Al Jawiya|2026-12-07T18:15||
+ACLE|Esteghlal|Neftchi|2026-12-07T18:15||
+ACLE|Al Gharafa|Al Nassr|2026-12-08T16:00||
+ACLE|Al Ahli|Shabab Al Ahli|2026-12-08T18:15||
 `;
 // Chuẩn hóa tên CLB giữa các giải để một CLB chỉ có một tên
 const ALIAS={'Leverkusen':'Bayer Leverkusen','Dortmund':'Borussia Dortmund','Stuttgart':'VfB Stuttgart','Gladbach':'M\'gladbach','Roma':'AS Roma','Inter':'Inter Milan','Lens':'RC Lens','Lyon':'Olympique Lyon','Marseille':'Olympique Marseille','Monaco':'AS Monaco','Lille':'Lille OSC','Porto':'FC Porto','Barcelona':'FC Barcelona','PSG':'Paris Saint-Germain'};
@@ -471,7 +503,7 @@ const norm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d').toLow
 const clubBtn=c=>`<button class="club" data-club="${esc(c)}" aria-pressed="${S.fav.has(c)}">${crest(c)}<span>${esc(c)}</span><span class="star">${S.fav.has(c)?'★':'☆'}</span></button>`;
 function drawClubs(){
   const q=norm(S.q.trim());
-  if(!q){clubList.innerHTML='<div style="color:var(--mute);font-size:13px">Gõ tên câu lạc bộ (V.League 1, Ngoại hạng Anh, La Liga, Serie A, Bundesliga, Ligue 1, Champions League) rồi bấm ngôi sao để theo dõi.</div>';}
+  if(!q){clubList.innerHTML='<div style="color:var(--mute);font-size:13px">Gõ tên câu lạc bộ (V.League 1, Ngoại hạng Anh, La Liga, Serie A, Bundesliga, Ligue 1, Champions League, AFC Champions League Elite) rồi bấm ngôi sao để theo dõi.</div>';}
   else{
     const r=[...clubs.keys()].filter(c=>norm(c).includes(q)).sort();
     clubList.innerHTML=r.length?r.map(clubBtn).join(''):'<div style="color:var(--mute);font-size:13px">Không tìm thấy CLB phù hợp.</div>';
@@ -571,6 +603,8 @@ const CLUB_COLORS={
   "AEK Athens":["#ffd100","#15171b"],"Bodø/Glimt":["#ffe500","#15171b"],"Club Brugge":["#0057b8","#15171b"],"FC Porto":["#00428c","#ffffff"],"Fenerbahçe":["#ffed00","#002d72"],"Feyenoord":["#e2001a","#ffffff"],"Galatasaray":["#a90432","#fdb912"],"LASK Linz":["#15171b","#ffffff"],"PSV":["#e2001a","#ffffff"],"Sabah":["#1d4f91","#ffffff"],"Shakhtar Donetsk":["#f58220","#15171b"],"Slavia Prague":["#d7141a","#ffffff"],"Slovan Bratislava":["#6cb4e4","#ffffff"],"Sporting CP":["#008057","#ffffff"],"Viking":["#002d62","#ffffff"],
   // V.League 1 (chỉ Hà Nội, SLNA, Thanh Hóa đã đối chiếu báo; các đội còn lại và Sabah là màu tạm chọn, nên kiểm tra lại)
   "Hà Nội":["#5b2d90","#ffd200"],"Sông Lam Nghệ An":["#ffd200","#1d4f91"],"Thanh Hóa":["#ffd200","#c8102e"],"Bắc Ninh":["#1d4f91","#ffffff"],"CA TP.HCM":["#c8102e","#ffd200"],"Công an Hà Nội":["#c8102e","#ffd200"],"HAGL":["#ffffff","#00843d"],"Hải Phòng":["#d71920","#ffffff"],"Hồng Lĩnh Hà Tĩnh":["#c8102e","#ffffff"],"Ninh Bình":["#c9a227","#15171b"],"SHB Đà Nẵng":["#f58220","#ffffff"],"Thép Xanh Nam Định":["#ffffff","#1d4f91"],"Thể Công Viettel":["#c8102e","#ffffff"],"Đồng Nai":["#00843d","#ffffff"],
+  // AFC Champions League Elite (màu tạm chọn, nên kiểm tra lại)
+  "Neftchi":["#ffd200","#15171b"],"Al Hilal":["#0050a0","#ffffff"],"Al Ain":["#5b2b82","#ffffff"],"Esteghlal":["#0057b8","#ffffff"],"Tractor":["#c8102e","#ffffff"],"Al Wasl":["#ffd200","#15171b"],"Al Shamal":["#1d4f91","#ffffff"],"Al Ahli":["#00843d","#ffffff"],"Al Ittihad":["#ffd200","#15171b"],"Pakhtakor":["#ffd200","#0057b8"],"Al Quwa Al Jawiya":["#0057b8","#ffffff"],"Al Gharafa":["#ffd200","#0057b8"],"Newcastle Jets":["#1d2f5c","#ffd200"],"Kashiwa Reysol":["#ffd200","#15171b"],"Daejeon Hana Citizen":["#6b1e3c","#00843d"],"Beijing Guoan":["#00843d","#ffffff"],"Kyoto Sanga":["#5b2b82","#ffffff"],"Pohang Steelers":["#c8102e","#15171b"],"Vissel Kobe":["#8e1f2f","#ffffff"],"Shanghai Port":["#c8102e","#ffffff"],"Buriram United":["#0a2a66","#ffffff"],"Ratchaburi":["#f58220","#15171b"],"Johor Darul Ta'zim":["#c8102e","#1c2c5b"],"Shabab Al Ahli":["#c8102e","#ffffff"],"Al Qadsiah":["#c8102e","#ffd200"],"Al Nassr":["#ffd200","#0050a0"],"Al Sadd":["#ffffff","#15171b"],"Kashima Antlers":["#b50e30","#1c2c5b"],"Jeonbuk Hyundai Motors":["#00843d","#ffffff"],"Gamba Osaka":["#0057b8","#15171b"],"Port FC":["#f58220","#1c2c5b"],
 };
 const rgb=h=>{h=h.slice(1);if(h.length===3)h=h.replace(/./g,'$&$&');return [0,2,4].map(i=>parseInt(h.slice(i,i+2),16))};
 // khoảng cách màu (công thức redmean): càng nhỏ càng giống nhau
@@ -699,7 +733,7 @@ function tick(){
 setInterval(tick,1000);
 // Mỗi phút: tự chuyển trận đã bắt đầu / kết thúc sang đúng mục và tính lại "trận tiếp theo"
 setInterval(()=>{drawNext();drawList()},60000);
-stamp.textContent=`Lịch & kết quả 6 giải châu Âu được cập nhật tự động; V.League được nhập tay. Giờ đếm ngược, ngày/giờ trận và phân loại "sắp diễn ra / kết quả" luôn tự tính theo giờ thực tại Việt Nam.`;
+stamp.textContent=`Lịch & kết quả 6 giải châu Âu được cập nhật tự động; V.League và AFC Champions League Elite được nhập tay (AFC Elite chốt ngày 28/11/2026, từ lượt 5). Giờ đếm ngược, ngày/giờ trận và phân loại "sắp diễn ra / kết quả" luôn tự tính theo giờ thực tại Việt Nam.`;
 document.querySelectorAll('[data-tab]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.tab===S.tab));
 drawAll();tick();
 // ---- Tỷ số tự động (results.json do GitHub Actions tạo)
