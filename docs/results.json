@@ -2743,5 +2743,155 @@
   ],
   "hs": null,
   "as": null
+ },
+ {
+  "id": 575422,
+  "lg": "UCL",
+  "utc": "2026-12-09T17:45:00Z",
+  "home": [
+   "Real Betis Balompié",
+   "Real Betis"
+  ],
+  "away": [
+   "Como 1907",
+   "Como 1907"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575423,
+  "lg": "UCL",
+  "utc": "2026-12-09T17:45:00Z",
+  "home": [
+   "ŠK Slovan Bratislava",
+   "Sl. Bratislava"
+  ],
+  "away": [
+   "FK Shakhtar Donetsk",
+   "Shaktar"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 564698,
+  "lg": "LL",
+  "utc": "2026-12-09T19:00:00Z",
+  "home": [
+   "Rayo Vallecano de Madrid",
+   "Rayo Vallecano"
+  ],
+  "away": [
+   "Athletic Club",
+   "Athletic"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575280,
+  "lg": "UCL",
+  "utc": "2026-12-09T20:00:00Z",
+  "home": [
+   "Arsenal FC",
+   "Arsenal"
+  ],
+  "away": [
+   "Real Madrid CF",
+   "Real Madrid"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575286,
+  "lg": "UCL",
+  "utc": "2026-12-09T20:00:00Z",
+  "home": [
+   "Borussia Dortmund",
+   "Dortmund"
+  ],
+  "away": [
+   "FC Internazionale Milano",
+   "Inter"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575290,
+  "lg": "UCL",
+  "utc": "2026-12-09T20:00:00Z",
+  "home": [
+   "PSV",
+   "PSV"
+  ],
+  "away": [
+   "Club Atlético de Madrid",
+   "Atleti"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575295,
+  "lg": "UCL",
+  "utc": "2026-12-09T20:00:00Z",
+  "home": [
+   "Liverpool FC",
+   "Liverpool"
+  ],
+  "away": [
+   "FC Porto",
+   "Porto"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575315,
+  "lg": "UCL",
+  "utc": "2026-12-09T20:00:00Z",
+  "home": [
+   "Racing Club de Lens",
+   "RC Lens"
+  ],
+  "away": [
+   "FK Bodø/Glimt",
+   "Bodø/Glimt"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575317,
+  "lg": "UCL",
+  "utc": "2026-12-09T20:00:00Z",
+  "home": [
+   "LASK Linz",
+   "LASK"
+  ],
+  "away": [
+   "Fenerbahçe SK",
+   "Fenerbahçe"
+  ],
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 575322,
+  "lg": "UCL",
+  "utc": "2026-12-09T20:00:00Z",
+  "home": [
+   "VfB Stuttgart",
+   "Stuttgart"
+  ],
+  "away": [
+   "Lille OSC",
+   "Lille"
+  ],
+  "hs": null,
+  "as": null
  }
 ]
